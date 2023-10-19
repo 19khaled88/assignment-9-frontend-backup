@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
+import { storeUserInfo } from '@/redux/services/authService'
 const LoginPage = () => {
     const router = useRouter()
     const [userLogin] = useUserLoginMutation()
@@ -17,9 +18,9 @@ const LoginPage = () => {
     const onSubmit: SubmitHandler<FormValues> = async(data:any) => {
         try {
             const res = await userLogin({...data}).unwrap()
-            console.log(res)
+            storeUserInfo({token:res?.token})
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
     return (
