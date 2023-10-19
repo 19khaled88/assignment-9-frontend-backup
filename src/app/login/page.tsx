@@ -1,12 +1,12 @@
 'use client'
 import FormInput from '@/form/formInput'
 import ReactForm from '@/form/hookForm'
+import { useUserLoginMutation } from '@/redux/api/authApi'
 import { Button, Col, Row } from 'antd'
 import Image from 'next/image'
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
-import { useUserLoginMutation } from '@/redux/api/authApi'
 const LoginPage = () => {
     const router = useRouter()
     const [userLogin] = useUserLoginMutation()
@@ -34,7 +34,7 @@ const LoginPage = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div >
                             <FormInput  name='email' type='text' size='large' label='User Email' />
-                            <FormInput name='Password' type='password' size='large' label='User Password' />
+                            <FormInput name='password' type='password' size='large' label='User Password' />
                         </div>
                         <Button style={{fontSize:'20px', height:'40px'}} type='primary' htmlType='submit'>
                             Login
