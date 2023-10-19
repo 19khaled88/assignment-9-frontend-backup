@@ -1,7 +1,7 @@
 'use client'
 import FormInput from '@/form/formInput'
 import ReactForm from '@/form/hookForm'
-import { Col, Row, Button } from 'antd'
+import { Button, Col, Row } from 'antd'
 import Image from 'next/image'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
@@ -38,7 +38,7 @@ const LoginPage = () => {
                     </div>
                 </ReactForm>
                 <div>
-                    <h2>Don't have Account</h2>
+                    <h2>Do not have Account?</h2>
                     <Button type='primary'>
                           Go Register
                     </Button>
