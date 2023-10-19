@@ -1,5 +1,6 @@
-const rootReducer ={
+import { baseApi } from "../api/baseApi"
 
+export const rootReducer ={
+    [baseApi.reducerPath]: baseApi.reducer
 }
 
-export default rootReducer

@@ -3,10 +3,11 @@ import FormInput from '@/form/formInput'
 import ReactForm from '@/form/hookForm'
 import { Button, Col, Row } from 'antd'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignUpImage from '../../../public/Sign up.svg'
 const LoginPage = () => {
-
+    const router = useRouter()
     type FormValues = {
         id: string;
         password: string
@@ -39,7 +40,7 @@ const LoginPage = () => {
                 </ReactForm>
                 <div>
                     <h2>Have Account</h2>
-                    <Button type='primary'>
+                    <Button onClick={()=>router.push('/login')} type='primary'>
                           Go Login
                     </Button>
                 </div>

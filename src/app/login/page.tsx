@@ -3,17 +3,21 @@ import FormInput from '@/form/formInput'
 import ReactForm from '@/form/hookForm'
 import { Button, Col, Row } from 'antd'
 import Image from 'next/image'
+import {useRouter} from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
+import { useUserLoginMutation } from '@/redux/api/authApi'
 const LoginPage = () => {
-
+    const router = useRouter()
+    const [userLogin] = useUserLoginMutation()
     type FormValues = {
         id: string;
         password: string
     }
-    const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const onSubmit: SubmitHandler<FormValues> = async(data:any) => {
         try {
-            console.log(data)
+            const res = await userLogin({...data})
+            console.log(res)
         } catch (error) {
             console.log(error)
         }
@@ -39,7 +43,7 @@ const LoginPage = () => {
                 </ReactForm>
                 <div>
                     <h2>Do not have Account?</h2>
-                    <Button type='primary'>
+                    <Button onClick={()=>router.push('/register')} type='primary'>
                           Go Register
                     </Button>
                 </div>
