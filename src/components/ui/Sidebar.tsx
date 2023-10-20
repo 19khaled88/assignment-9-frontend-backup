@@ -3,11 +3,16 @@ import { sidebarItems } from '@/constants/sidebarItems';
 import { USER_ROLE } from '@/constants/role';
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
+import { getUserInfo } from '@/redux/services/authService';
 const { Header, Content, Footer, Sider } = Layout;
 
 
 const SidebarPage = () => {
-  const role = USER_ROLE.USER
+  const userRole= getUserInfo()
+ 
+  // let role = USER_ROLE.SUPER_ADMIN
+  // const role = USER_ROLE.USER
+ 
   const [collapsed, setCollapsed] = useState(false)
   return (
     <Sider
@@ -39,7 +44,7 @@ const SidebarPage = () => {
         theme='dark'
         defaultSelectedKeys={['1']}
         mode='inline'
-        items={sidebarItems(role)}
+        items={sidebarItems(userRole)}
       />
     </Sider>
 

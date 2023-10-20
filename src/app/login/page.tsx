@@ -2,27 +2,38 @@
 import FormInput from '@/form/formInput'
 import ReactForm from '@/form/hookForm'
 import { useUserLoginMutation } from '@/redux/api/authApi'
+import { isLoggedIn, storeUserInfo } from '@/redux/services/authService'
 import { Button, Col, Row } from 'antd'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
-import { storeUserInfo } from '@/redux/services/authService'
 const LoginPage = () => {
+   
     const router = useRouter()
     const [userLogin] = useUserLoginMutation()
     type FormValues = {
         id: string;
         password: string
     }
+    const userLoggedIn = isLoggedIn()
+    if(userLoggedIn){
+        router.push('/profile')
+    }
     const onSubmit: SubmitHandler<FormValues> = async(data:any) => {
         try {
             const res = await userLogin({...data}).unwrap()
+            // console.log(res)
+            if(res && res.token){
+                router.push('/profile')
+               
+            }
             storeUserInfo({token:res?.token})
         } catch (error) {
             console.error(error)
         }
     }
+    
     return (
         <Row style={{ width: '95%', height: '100vh', margin: 'auto' }}>
             <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} xs={2} sm={12} md={16} lg={16} xl={14}>

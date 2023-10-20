@@ -1,16 +1,35 @@
 'use client'
 import ContentPage from '@/components/ui/Content';
 import SidebarPage from '@/components/ui/Sidebar';
+import { isLoggedIn } from '@/redux/services/authService';
 
-import { Breadcrumb, Layout, theme } from 'antd';
-import React from 'react';
+import { Layout } from 'antd';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
+  const userLoggedIn = isLoggedIn()
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  
 
+ 
+  useEffect(()=>{
+   
+    if(!userLoggedIn){
+      router.push('/login')
+    }
+    setIsLoading(true)
+  },[router,isLoading])
+
+//  if(!isLoading){
+//   return <p>Loading....</p>
+//  }
+ 
   return (
     <Layout style={{ minHeight: '100vh' }} hasSider>
       {/* <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
