@@ -2,6 +2,7 @@
 import { useUserProfileQuery, useUserUpdateMutation } from '@/redux/api/authApi'
 import { getUserInfo } from '@/redux/services/authService'
 import { Button, Form, Input } from 'antd'
+import { userInfo } from 'os'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 const UserPage = () => {
@@ -20,7 +21,7 @@ const UserPage = () => {
         'id': userInfo.userId
       })
     }
-  }, [])
+  }, [userInfo])
 
   const { data, isLoading } = useUserProfileQuery(id)
   const [updatePost, { isLoading: updateLoading, isSuccess: updateSuccess, isError: updateError }] = useUserUpdateMutation()

@@ -45,7 +45,7 @@ const BookingList = () => {
     //         setTest(newObject)
 
     //     }
-    // },[bookings])
+    // },[bookings,isLoading, bookings.data])
 
 
     useEffect(() => {

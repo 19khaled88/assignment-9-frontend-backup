@@ -2,6 +2,7 @@
 
 import { useUserProfileQuery } from "@/redux/api/authApi"
 import { getUserInfo } from "@/redux/services/authService"
+import { userInfo } from "os"
 import { useEffect, useState } from "react"
 
 
@@ -17,7 +18,7 @@ const Profile = () => {
         'id': userInfo.userId
       })
     }
-  }, [])
+  }, [userInfo])
   const { data, isLoading } = useUserProfileQuery(info.id)
   if (isLoading) {
     <div>Loading.....</div>

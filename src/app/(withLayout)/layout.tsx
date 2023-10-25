@@ -23,7 +23,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       router.push('/login')
     }
     setIsLoading(true)
-  }, [router, isLoading,userLoggedIn])
+    
+  }, [router, isLoading, userLoggedIn])
 
   //  if(!isLoading){
   //   return <p>Loading....</p>
