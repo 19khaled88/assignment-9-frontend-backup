@@ -20,7 +20,7 @@ const ListTable = () => {
         if(!isLoading){
             setAllUser(users?.data.data)
         }
-    })
+    },[isLoading, users.data.data])
 
     
     
