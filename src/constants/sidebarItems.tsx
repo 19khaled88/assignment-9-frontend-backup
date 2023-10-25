@@ -5,18 +5,23 @@ import {
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import Link from 'next/link'
-export const sidebarItems=(role:any)=>{
+export const sidebarItems = (role: any) => {
 
-    const defaultSidebarItems:MenuProps['items'] =[
+    const defaultSidebarItems: MenuProps['items'] = [
         {
-            label:'Profile',
-            key:'profile',
-            icon:< ProfileOutlined/>,
-            children:[
+            label: 'Profile',
+            key: 'profile',
+            icon: < ProfileOutlined />,
+            children: [
                 {
-                    icon:< UserOutlined/>,
-                    label:<Link href={`/profile/user`}>User profile</Link>,
-                    key:`/profile`
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/user`}>User profile</Link>,
+                    key: `/profile`
+                },
+                {
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/user/bookings`}>Bookings</Link>,
+                    key: `/bookings`
                 },
                 // {
                 //     icon:< KeyOutlined/>,
@@ -26,21 +31,21 @@ export const sidebarItems=(role:any)=>{
             ]
         }
     ]
-    const commonAdminSidebarItem:MenuProps['items'] =[
+    const commonAdminSidebarItem: MenuProps['items'] = [
         {
-            label:'Profile',
-            key:'profile',
-            icon:< ProfileOutlined/>,
-            children:[
+            label: 'Profile',
+            key: 'profile',
+            icon: < ProfileOutlined />,
+            children: [
                 {
-                    icon:< UserOutlined/>,
-                    label:<Link href={`/profile/admin`}>Admin profile</Link>,
-                    key:`/admin`
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/admin`}>Admin profile</Link>,
+                    key: `/admin`
                 },
                 {
-                    icon:< UserOutlined/>,
-                    label:<Link href={`/profile/list`}>User List</Link>,
-                    key:`/list`
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/list`}>User List</Link>,
+                    key: `/list`
                 },
                 // {
                 //     icon:< KeyOutlined/>,
@@ -49,7 +54,7 @@ export const sidebarItems=(role:any)=>{
                 // }
             ]
         }
-       
+
         // {
         //     icon:< UsergroupAddOutlined/>,
         //     label:<Link href={`/${role}/update`}>Update</Link>,
@@ -60,7 +65,7 @@ export const sidebarItems=(role:any)=>{
         //     label:<Link href={`/${role}/all`}>All Admins</Link>,
         //     key:`/${role}/all`
         // },
-        
+
         // {
         //     icon:< UsergroupAddOutlined/>,
         //     label:<Link href={`/${role}/manaege-fields`}>Manaege-fields</Link>,
@@ -72,22 +77,22 @@ export const sidebarItems=(role:any)=>{
         //     key:`/${role}/manaege-turf`
         // }
     ]
-    const superAdminSidebarItem:MenuProps['items'] = [
+    const superAdminSidebarItem: MenuProps['items'] = [
 
         {
-            label:'Profile',
-            key:'profile',
-            icon:< ProfileOutlined/>,
-            children:[
+            label: 'Profile',
+            key: 'profile',
+            icon: < ProfileOutlined />,
+            children: [
                 {
-                    icon:< UserOutlined/>,
-                    label:<Link href={`/profile/super_admin`}>Super admin profile</Link>,
-                    key:`/super_admin`
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/super_admin`}>Super admin profile</Link>,
+                    key: `/super_admin`
                 },
                 {
-                    icon:< UserOutlined/>,
-                    label:<Link href={`/profile/list`}>User List</Link>,
-                    key:`/list`
+                    icon: < UserOutlined />,
+                    label: <Link href={`/profile/list`}>User List</Link>,
+                    key: `/list`
                 },
                 // {
                 //     icon:< KeyOutlined/>,
@@ -110,7 +115,7 @@ export const sidebarItems=(role:any)=>{
         //     ]
         // }
     ]
-    if(role && role.role === 'SUPER_ADMIN') return superAdminSidebarItem;
-    else if(role && role.role === 'ADMIN') return commonAdminSidebarItem;
+    if (role && role.role === 'SUPER_ADMIN') return superAdminSidebarItem;
+    else if (role && role.role === 'ADMIN') return commonAdminSidebarItem;
     else return defaultSidebarItems;
 }

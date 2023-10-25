@@ -18,10 +18,10 @@ const ListTable = () => {
     
     useEffect(()=>{
         if(!isLoading){
-            setAllUser(users.data.data)
+            setAllUser(users?.data.data)
         }
     })
-    console.log(allUser)
+
     
     
     const columns = [
@@ -88,13 +88,14 @@ const ListTable = () => {
     }
     const paginationConfig = {
         pageSize: 5,
-        total: 10,
+        total: 6,
         pageSizeOptions: [5, 10, 20],
         showSizeChanger: true,
         onChange: onPageSizeChange
     }
     return <Table
         loading={isLoading}
+        rowKey='id'
         dataSource={allUser}
         columns={columns}
         pagination={paginationConfig}

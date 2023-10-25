@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+    .navicon {
+        display: flex;
+    }
+    .clickIcon{
+        display: none;
+    }
+    .navClickIcon{
+        display: flex;
+        gap: 2px;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 769px) {
+    .navicon {
+        display: none;
+    }
+    .clickIcon{
+        display: block;
+    }
+    .navClickIcon{
+        display: none;
+    }
+}

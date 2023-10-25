@@ -2,7 +2,6 @@
 import ContentPage from '@/components/ui/Content';
 import SidebarPage from '@/components/ui/Sidebar';
 import { isLoggedIn } from '@/redux/services/authService';
-
 import { Layout } from 'antd';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -15,22 +14,23 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn()
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  
 
- 
-  useEffect(()=>{
-   
-    if(!userLoggedIn){
+
+
+  useEffect(() => {
+
+    if (!userLoggedIn) {
       router.push('/login')
     }
     setIsLoading(true)
-  },[router,isLoading])
+  }, [router, isLoading])
 
-//  if(!isLoading){
-//   return <p>Loading....</p>
-//  }
- 
+  //  if(!isLoading){
+  //   return <p>Loading....</p>
+  //  }
+
   return (
+
     <Layout style={{ minHeight: '100vh' }} hasSider>
       {/* <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
@@ -38,9 +38,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </Sider> */}
 
       {/* <SidebarPage /> */}
+
       {
         SidebarPage()
       }
+
+
 
       {/* <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }} /> */}
@@ -52,6 +55,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
       </Layout> */}
     </Layout>
+
   );
 };
 

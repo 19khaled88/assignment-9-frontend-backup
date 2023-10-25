@@ -8,31 +8,41 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler } from "react-hook-form"
 import SignInImage from '../../../public/Sign in.svg'
+
 const LoginPage = () => {
-   
+
     const router = useRouter()
-    const [userLogin] = useUserLoginMutation()
+    const [userLogin,{ error }] = useUserLoginMutation()
+    
+
     type FormValues = {
-        id: string;
+        email: string;
         password: string
     }
     const userLoggedIn = isLoggedIn()
-    if(userLoggedIn){
+    if (userLoggedIn) {
         router.push('/profile')
     }
-    const onSubmit: SubmitHandler<FormValues> = async(data:any) => {
+    
+    const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+  
         try {
-            const res = await userLogin({...data}).unwrap()
-            // console.log(res)
-            if(res && res.token){
-                router.push('/profile')
-               
+            const res = await userLogin({ ...data }).unwrap()
+            
+            if(!res || res === undefined){
+                router.push('/login')
             }
-            storeUserInfo({token:res?.token})
+            if (res && res.token) {
+                storeUserInfo({ token: res?.token })
+                router.push('/profile')
+
+            }
+            
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
     }
+
     
     return (
         <Row style={{ width: '95%', height: '100vh', margin: 'auto' }}>
@@ -45,22 +55,23 @@ const LoginPage = () => {
                 <ReactForm submitHandler={onSubmit}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div >
-                            <FormInput  name='email' type='text' size='large' label='User Email' />
+                            <FormInput name='email' type='text' size='large' label='User Email' />
                             <FormInput name='password' type='password' size='large' label='User Password' />
                         </div>
-                        <Button style={{fontSize:'20px', height:'40px'}} type='primary' htmlType='submit'>
+                        <Button style={{ fontSize: '20px', height: '40px' }} type='primary' htmlType='submit'>
                             Login
                         </Button>
                     </div>
                 </ReactForm>
                 <div>
                     <h2>Do not have Account?</h2>
-                    <Button onClick={()=>router.push('/register')} type='primary'>
-                          Go Register
+                    <Button onClick={() => router.push('/register')} type='primary'>
+                        Go Register
                     </Button>
                 </div>
 
             </Col>
+           
         </Row>
     )
 }

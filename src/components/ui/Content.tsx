@@ -33,7 +33,7 @@ const ContentPage = ({ children }: { children: React.ReactNode }) => {
             // }
           ]
         } />
-        <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+        <div style={{ padding: 24, minHeight: 460, background: colorBgContainer }}>
           {children}
         </div>
       </Content>

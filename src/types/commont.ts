@@ -29,3 +29,14 @@ export type IUserResonse ={
     location: string,
     bookings:string[]
 }
+
+export type IBookingResponse ={
+    start_time:string,
+    end_time:string,
+    payment_status:string,
+    gameOfferId:string,
+    userId:string,
+    turfId:string,
+    fieldId:string,
+    gameTypeId:string
+}
