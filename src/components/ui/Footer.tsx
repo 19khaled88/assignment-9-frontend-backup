@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 
-export const Footer= () => {
+export const Footer = () => {
 
     const footerNavs = [
         {
@@ -34,20 +34,20 @@ export const Footer= () => {
 
     return (
         <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8"
-            
+
         >
             <div className="max-w-lg sm:mx-auto sm:text-center">
-                <Image src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="No image"/>
+                <Image src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="No image" />
                 <p className="leading-relaxed mt-2 text-[15px]">
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
             </div>
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
                 {
                     footerNavs.map((item, idx) => (
                         <li key={idx} className=" hover:text-gray-800">
-                            <a  href={item.href}>
-                                { item.name }
+                            <a href={item.href}>
+                                {item.name}
                             </a>
                         </li>
                     ))

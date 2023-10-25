@@ -53,7 +53,7 @@ const BookingList = () => {
             setAllBooking(bookings?.data)
 
         }
-    })
+    },[isLoading, bookings.data])
     // :(TableColumnGroupType<never> | TableColumnsType<never>)[]
     const columns:(TableColumnGroupType<never> | ColumnType<never>)[] = [
         {
