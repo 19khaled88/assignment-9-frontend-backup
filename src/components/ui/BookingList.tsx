@@ -54,7 +54,7 @@ const BookingList = () => {
 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoading, bookings, bookings?.data])
+    }, [])
     // :(TableColumnGroupType<never> | TableColumnsType<never>)[]
     const columns: (TableColumnGroupType<never> | ColumnType<never>)[] = [
         {
