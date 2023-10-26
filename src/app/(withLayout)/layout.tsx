@@ -24,7 +24,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     }
     setIsLoading(true)
 // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [router, isLoading, userLoggedIn])
 
   //  if(!isLoading){
   //   return <p>Loading....</p>

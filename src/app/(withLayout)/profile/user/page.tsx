@@ -21,7 +21,7 @@ const UserPage = () => {
         'id': userInfo.userId
       })
     }
-  }, [userInfo])
+  }, [])
 
   const { data, isLoading } = useUserProfileQuery(id)
   const [updatePost, { isLoading: updateLoading, isSuccess: updateSuccess, isError: updateError }] = useUserUpdateMutation()

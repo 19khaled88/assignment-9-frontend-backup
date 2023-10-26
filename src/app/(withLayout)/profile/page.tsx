@@ -18,7 +18,7 @@ const Profile = () => {
         'id': userInfo.userId
       })
     }
-  }, [userInfo])
+  }, [])
   const { data, isLoading } = useUserProfileQuery(info.id)
   if (isLoading) {
     <div>Loading.....</div>
