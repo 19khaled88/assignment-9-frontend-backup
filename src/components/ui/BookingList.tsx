@@ -1,8 +1,8 @@
 'use client'
-import { useAllBookingsQuery } from '@/redux/api/bookingApi'
-import { Button, Table, TableColumnGroupType, TableColumnType } from 'antd'
+import { useAllBookingsQuery } from '@/redux/api/bookingApi';
+import { Button, Table, TableColumnGroupType } from 'antd';
 import { ColumnType } from 'antd/lib/table';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 const BookingList = () => {
     const query: Record<string, any> = {}
     const [allBooking, setAllBooking] = useState([])
@@ -53,9 +53,10 @@ const BookingList = () => {
             setAllBooking(bookings?.data)
 
         }
-    },[isLoading, bookings.data])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading, bookings, bookings?.data])
     // :(TableColumnGroupType<never> | TableColumnsType<never>)[]
-    const columns:(TableColumnGroupType<never> | ColumnType<never>)[] = [
+    const columns: (TableColumnGroupType<never> | ColumnType<never>)[] = [
         {
             title: 'Customer',
             dataIndex: 'user',
