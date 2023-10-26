@@ -1,7 +1,5 @@
 'use client'
-
 import Image from "next/image"
-
 export const Footer = () => {
 
     const footerNavs = [
@@ -37,7 +35,7 @@ export const Footer = () => {
 
         >
             <div className="max-w-lg sm:mx-auto sm:text-center">
-                {/* <Image src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="" /> */}
+                <Image src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="" width={500} height={500}/>
                 <p className="leading-relaxed mt-2 text-[15px]">
                     Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
