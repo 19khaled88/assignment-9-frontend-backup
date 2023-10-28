@@ -14,12 +14,12 @@ export type ResponseErrorType = {
     errorMessages: IGenericErrorMessage[]
 }
 
-export type IGenericErrorMessage ={
-    path:string;
-    message:string
+export type IGenericErrorMessage = {
+    path: string;
+    message: string
 }
 
-export type IUserResonse ={
+export type IUserResonse = {
     id: string,
     name: string,
     role: string,
@@ -27,16 +27,45 @@ export type IUserResonse ={
     contactNo: string,
     address: string,
     location: string,
-    bookings:string[]
+    bookings: string[]
 }
 
-export type IBookingResponse ={
-    start_time:string,
-    end_time:string,
-    payment_status:string,
-    gameOfferId:string,
-    userId:string,
+export type IBookingResponse = {
+    start_time: string,
+    end_time: string,
+    payment_status: string,
+    gameOfferId: string,
+    userId: string,
+    turfId: string,
+    fieldId: string,
+    gameTypeId: string
+}
+
+export type IGameTypeResponse = {
+    id: string,
+    name: string,
+    numberOfPalyers: number,
+    GameOffers: string
+    bookings: string
+}
+
+export type ITurfResponse = {
+    id: string,
+    name: string,
+    location: string,
+    owner: string,
+    gameOffers: string[],
+    fields: string[],
+    bookings: string[],
+}
+
+export type IOfferResponse ={
+    price_per_hour:number,
     turfId:string,
+    turf:string[],
+    gameTypeId:string,
+    gameType:string[],
     fieldId:string,
-    gameTypeId:string
+    field:string[],
+    bookings:string[]
 }

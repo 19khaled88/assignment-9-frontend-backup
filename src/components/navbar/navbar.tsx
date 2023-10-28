@@ -8,6 +8,8 @@ import { MdOutlineFeaturedPlayList } from 'react-icons/md';
 import { TbListDetails } from 'react-icons/tb';
 import { VscAccount } from 'react-icons/vsc';
 import styles from '../../app/styles/nav.module.css';
+import Image from 'next/image'
+const logo = '/logo.jpg'
 const Navbar = () => {
     const [nav, setNav] = useState(false);
 
@@ -17,31 +19,31 @@ const Navbar = () => {
             id: 1,
             link: "Home",
             name: 'Home',
-            icon: <AiOutlineHome size={20} />
+            icon: <AiOutlineHome size={15} />
         },
         {
             id: 2,
             link: "About",
             name: 'About',
-            icon: <TbListDetails size={20} />
+            icon: <TbListDetails size={15} />
         },
         {
             id: 3,
             link: "Feature",
             name: 'Feature',
-            icon: <MdOutlineFeaturedPlayList size={20} />
+            icon: <MdOutlineFeaturedPlayList size={15} />
         },
         {
             id: 4,
             link: "Cart",
             name: 'Cart',
-            icon: <BsCart4 size={20} />
+            icon: <BsCart4 size={15} />
         },
         {
             id: 5,
             link: "/login",
             name: 'Account',
-            icon: <VscAccount size={20} />
+            icon: <VscAccount size={15} />
         },
     ];
 
@@ -52,19 +54,20 @@ const Navbar = () => {
             <div style={{ paddingLeft: '20px' }}>
                 {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
                 <h1 className="text-5xl font-signature ml-2">
-                    <a
+                    {/* <a
                         className="link-underline link-underline-black"
                         href=""
                         target="_blank"
                         rel="noreferrer"
                     >
                         Logo
-                    </a>
+                    </a> */}
+                    <Image src={logo} alt="No Logo" width={50} height={50} className="rounded-md"/>
                 </h1>
             </div>
             <div className={styles.clickIcon} style={{ paddingRight: '20px' }}>
 
-                <ul style={{ display: 'flex', flexDirection: 'row', listStyle: 'none', gap: '45px' }}>
+                <ul style={{ display: 'flex', flexDirection: 'row', listStyle: 'none', gap: '10px' }}>
                     {links.map(({ id, link, icon, name }) => (
 
                         <li
@@ -73,7 +76,7 @@ const Navbar = () => {
                             style={{ display: 'flex', flexDirection: 'row', gap: '2px', justifyContent: 'center', alignItems: 'center' }}
                         >
                             {icon}
-                            <Link style={{ textDecoration: 'none', color: 'white', fontSize: '18px' }} href={link}>{name}</Link>
+                            <Link style={{ textDecoration: 'none', color: 'white', fontSize: '15px' }} href={link}>{name}</Link>
                         </li>
                     ))}
                 </ul>

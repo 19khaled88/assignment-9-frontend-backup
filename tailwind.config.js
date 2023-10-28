@@ -7,10 +7,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./form/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite-react/**/*.js",
+    "./pages/**/*.{ts,tsx}",
+    "./public/**/*.html",
  
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  plugins: [
+    require("flowbite/plugin")
+  ]
+  ,
   theme: {
     extend: {
       fontFamily: { // add new font family
@@ -34,7 +41,6 @@ module.exports = {
       light: '#F9FBFC',
       white: '#FFF'
     }
-  },
-  plugins: []
+  }
 }
 

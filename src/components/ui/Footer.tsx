@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image"
+import turfCommunity from '../../../public/turfCommunity1_prev_ui.png'
 export const Footer = () => {
 
     const footerNavs = [
@@ -26,18 +27,18 @@ export const Footer = () => {
 
         {
             href: '#',
-            name: 'Suuport'
+            name: 'Support'
         }
     ]
 
     return (
-        <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8"
+        <footer className="text-gray-500 bg-white px-10 py-5 max-w-screen-xl mx-auto md:px-8"
 
         >
             <div className="max-w-lg sm:mx-auto sm:text-center">
-                <Image src="https://www.floatui.com/logo.svg" className="w-32 sm:mx-auto" alt="" width={500} height={500}/>
+                <Image src={turfCommunity} className="w-32 sm:mx-auto" alt="" width={500} height={500} />
                 <p className="leading-relaxed mt-2 text-[15px]">
-                    Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    We, A promising team, working heat and soul in developing a sound and healthy playing environment through a enourmous hardwork in this city where you are residing
                 </p>
             </div>
             <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
@@ -53,7 +54,7 @@ export const Footer = () => {
             </ul>
             <div className="mt-8 items-center justify-between sm:flex">
                 <div className="mt-4 sm:mt-0">
-                    &copy; 2022 Float UI All rights reserved.
+                    &copy; 2022 All rights reserved by RS Dynamic ground.
                 </div>
                 <div className="mt-6 sm:mt-0">
                     <ul className="flex items-center space-x-4">

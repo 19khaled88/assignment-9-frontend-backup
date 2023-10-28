@@ -22,7 +22,8 @@ export default function BannerPage() {
                     <Image
                         src={image}
                         alt='No Image'
-                        style={{ width: '100%', height: '30%' }}
+                        // style={{ width: '100%', height: '500px' }}
+                        className='w-full h-48 md:h-64 lg:h-96'
                         height={600}
                         width={500}
                     // objectFit='contain'
@@ -34,6 +35,7 @@ export default function BannerPage() {
         })
         return array
     }
+
     return (
         <div className='h-4/5'>
             <div className='h-4/5'>
