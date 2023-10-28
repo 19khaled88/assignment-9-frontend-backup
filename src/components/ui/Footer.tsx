@@ -36,7 +36,7 @@ export const Footer = () => {
 
         >
             <div className="max-w-lg sm:mx-auto sm:text-center">
-                <Image src={turfCommunity} className="w-32 sm:mx-auto" alt="" width={500} height={500} />
+                <span ><Image src={turfCommunity} className="w-32 sm:mx-auto" alt="" width={500} height={500} /></span>
                 <p className="leading-relaxed mt-2 text-[15px]">
                     We, A promising team, working heat and soul in developing a sound and healthy playing environment through a enourmous hardwork in this city where you are residing
                 </p>

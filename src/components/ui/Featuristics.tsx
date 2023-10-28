@@ -1,10 +1,31 @@
+'use client'
 import Image from "next/image"
 import elder_community from '../../../public/elderly_community.jpg'
 import gymnastics from '../../../public/gymnastics.jpg'
 import skilled_player from '../../../public/skilled_player_hunts.jpg'
 import youth_talent_group from '../../../public/youth_talent_group.jpg'
 import feature from '../../../public/feature-removebg-preview.png'
+import { useEffect, useRef } from "react"
+import AOS from 'aos'
+import { useInView } from "framer-motion";
 const Featuristics = () => {
+
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+    useEffect(() => {
+        AOS.init({
+            delay:30,
+            duration:400,
+            easing:'ease-out',
+            once:false,
+            mirror:true,
+            offset:120,
+            debounceDelay:50,
+            throttleDelay:99
+        });
+        AOS.refresh();
+      }, [isInView]);
+
     return (
         <div className="flex flex-col pt-16 justify-items-center justify-center pb-10 relative">
             <h1 className="text-center  py-5 pl-16 md:pl-0 text-lg md:text-2xl font-bold text-gray-500">Features, We are working on</h1>
@@ -14,8 +35,9 @@ const Featuristics = () => {
                 width={200}
                 height={200}
                 className="absolute w-32 lg:w-48 xl:w-52 top-10 lg:top-4 xl:top-4 left-6 lg:-left-16 xl:-left-16"
+                data-aos='fade-right'
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-24 md:gap-20 lg:gap-16 xl:gap-5 pr-10 pl-10 lg:pl-32 xl:pl-32 pt-20">
+            <div ref={ref} data-aos='fade-up' className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-24 md:gap-20 lg:gap-16 xl:gap-5 pr-10 pl-10 lg:pl-32 xl:pl-32 pt-20">
                 <div className="border border-gray-400 p-5 relative">
                     <Image src={gymnastics} width={100} height={200} alt="No Image" className="absolute  -top-12 m-auto left-0 right-0 h-24 w-4/5 md:w-4/5 lg:w-4/5 xl:w-4/5" />
                     <div className="pt-16">

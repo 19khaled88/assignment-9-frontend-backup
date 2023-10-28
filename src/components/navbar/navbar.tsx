@@ -1,7 +1,8 @@
 'use client'
 import Link from "next/link";
-import { useState } from "react";
+import React, { useState} from "react";
 import { AiOutlineHome } from 'react-icons/ai';
+
 import { BsCart4 } from 'react-icons/bs';
 import { FaBars, FaTimes } from "react-icons/fa";
 import { MdOutlineFeaturedPlayList } from 'react-icons/md';
@@ -10,9 +11,11 @@ import { VscAccount } from 'react-icons/vsc';
 import styles from '../../app/styles/nav.module.css';
 import Image from 'next/image'
 const logo = '/logo.jpg'
+
 const Navbar = () => {
     const [nav, setNav] = useState(false);
-
+  
+    
 
     const links = [
         {
@@ -46,9 +49,11 @@ const Navbar = () => {
             icon: <VscAccount size={15} />
         },
     ];
-
+    
     return (
-        <div className="" style={{ display: 'flex', justifyContent: 'space-between', height: '70px', alignItems: 'center', width: '100%', background: '#3876BF', color: 'white', position: 'relative' }}
+        <div 
+        className="" 
+        style={{ display: 'flex', justifyContent: 'space-between', height: '70px', alignItems: 'center', width: '100%', background: '#3876BF', color: 'white', position: 'relative' }}
         >
 
             <div style={{ paddingLeft: '20px' }}>

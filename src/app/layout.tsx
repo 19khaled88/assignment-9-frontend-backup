@@ -2,6 +2,7 @@ import Providers from '@/lib/Provider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { AOSInit } from '@/components/aosAnimation/aos'
 
 
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
+        
 
         <body suppressHydrationWarning={true} className={inter.className}>
          

@@ -1,6 +1,23 @@
 import { useAllGameTypesQuery } from "@/redux/api/gameTypeApi"
-import { ReactNode } from "react"
+import { ReactNode,useEffect,useRef } from "react"
+import {useInView} from 'framer-motion'
+import AOS from 'aos'
 const GameTypePage = () => {
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+    useEffect(() => {
+        AOS.init({
+            delay:30,
+            duration:800,
+            easing:'ease-out',
+            once:false,
+            mirror:true,
+            offset:120,
+            debounceDelay:50,
+            throttleDelay:99
+        });
+        AOS.refresh();
+      }, [isInView]);
     const query: Record<string, any> = {}
     const { data: gameTypes, isLoading, isError, error } = useAllGameTypesQuery({ ...query })
 
@@ -9,7 +26,7 @@ const GameTypePage = () => {
         gameTypes?.data.data.map((item: any, index: number) => {
 
             array.push(
-                <div key={index} className="max-w-sm p-12 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div data-aos="fade-up" key={index} className="max-w-sm p-12 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>
 
@@ -28,7 +45,7 @@ const GameTypePage = () => {
     if (isLoading) {
         return (
             <div className="flex flex-col pt-10 justify-items-center justify-center ">
-                <h1 className="text-center py-5 text-2xl font-bold text-gray-500">Game, What you can play in our trufs</h1>
+                <h1  className="text-center py-5 text-2xl font-bold text-gray-500" >Game, What you can play in our trufs</h1>
                 <div role="status" className="max-w-sm animate-pulse">
                     <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
                     <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
@@ -43,7 +60,7 @@ const GameTypePage = () => {
     }
     return (
         <div className="flex flex-col pt-10 justify-items-center justify-center ">
-            <h1 className="text-center py-5 text-2xl font-bold text-gray-500">Game, What you can play in our trufs</h1>
+            <h1 className="text-center py-5 text-2xl font-bold text-gray-500" >Game, What you can play in our trufs</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center justify-center shadow-2xl mx-10 p-10 rounded-md">
                 {
                     showGameTypes(gameTypes)
