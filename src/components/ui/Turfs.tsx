@@ -1,23 +1,39 @@
 import { useAllTurfsQuery } from "@/redux/api/TurfApi"
-import { ReactNode ,useEffect,useRef} from "react"
-import {useInView} from 'framer-motion'
 import AOS from 'aos'
+import { SearchOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Button, Input, Select, Space } from 'antd';
+import { useInView } from 'framer-motion'
+import { ReactNode, useEffect, useRef } from "react"
 const Turfs = () => {
     const ref = useRef(null)
     const isInView = useInView(ref)
+    const { Search } = Input;
+
+    const options = [
+        {
+            value: 'zhejiang',
+            label: 'Zhejiang',
+        },
+        {
+            value: 'jiangsu',
+            label: 'Jiangsu',
+        },
+    ];
+    
     useEffect(() => {
         AOS.init({
-            delay:30,
-            duration:800,
-            easing:'ease-out',
-            once:false,
-            mirror:true,
-            offset:120,
-            debounceDelay:50,
-            throttleDelay:99
+            delay: 30,
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: true,
+            offset: 120,
+            debounceDelay: 50,
+            throttleDelay: 99
         });
         AOS.refresh();
-      }, [isInView]);
+    }, [isInView]);
     const query: Record<string, any> = {}
     const { data: turfs, isLoading, isError, error } = useAllTurfsQuery({ ...query })
     const showTurfs = (turfs: any): ReactNode => {
@@ -26,9 +42,7 @@ const Turfs = () => {
 
             array.push(
                 <div data-aos="flip-left" key={index} className="max-w-sm p-6 w-64 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>
-
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Location : {item.location}</p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Owner : {item.owner}</p>
                     <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -59,12 +73,17 @@ const Turfs = () => {
         )
     }
     return (
-        <div className="flex flex-col pt-10 justify-items-center justify-center ">
-            <h1
-                className="text-center py-5 text-2xl font-bold text-gray-500"
-            //  data-aos="fade-right"
-            >
-                Turfs, We takes care of</h1>
+        <div className="flex flex-col pt-10 justify-items-center justify-center relative">
+            <h1 className="text-center py-5 text-2xl font-bold text-gray-500" data-aos="zoom-in">
+                Turfs, We takes care of
+            </h1>
+            <Space >
+                <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
+                    <Select className="text-lg" style={{ height: '40px' }} defaultValue="All criteria" options={options} />
+                    <Input defaultValue="Type for what you search" style={{ height: '40px', width: '100%' }} />
+                    <Button className="bg-blue-500 text-white text-lg" style={{ height: '40px' }}>Submit</Button>
+                </Space.Compact>
+            </Space>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center justify-center shadow-2xl mx-10 p-10 rounded-md">
                 {
                     showTurfs(turfs)

@@ -28,7 +28,7 @@ const Featuristics = () => {
 
     return (
         <div className="flex flex-col pt-16 justify-items-center justify-center pb-10 relative">
-            <h1 className="text-center  py-5 pl-16 md:pl-0 text-lg md:text-2xl font-bold text-gray-500">Features, We are working on</h1>
+            <h1 className="text-center  py-5 pl-16 md:pl-0 text-lg md:text-2xl font-bold text-gray-500" data-aos="zoom-in">Features, We are working on</h1>
             <Image
                 src={feature}
                 alt="No Image"

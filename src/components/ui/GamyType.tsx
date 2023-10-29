@@ -2,8 +2,12 @@ import { useAllGameTypesQuery } from "@/redux/api/gameTypeApi"
 import { ReactNode,useEffect,useRef } from "react"
 import {useInView} from 'framer-motion'
 import AOS from 'aos'
+import { SearchOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Button, Input, Select, Space } from 'antd';
 const GameTypePage = () => {
     const ref = useRef(null)
+    const { Search } = Input;
     const isInView = useInView(ref)
     useEffect(() => {
         AOS.init({
@@ -20,7 +24,16 @@ const GameTypePage = () => {
       }, [isInView]);
     const query: Record<string, any> = {}
     const { data: gameTypes, isLoading, isError, error } = useAllGameTypesQuery({ ...query })
-
+    const options = [
+        {
+            value: 'zhejiang',
+            label: 'Zhejiang',
+        },
+        {
+            value: 'jiangsu',
+            label: 'Jiangsu',
+        },
+    ];
     const showGameTypes = (data: any): ReactNode => {
         let array: any[] = []
         gameTypes?.data.data.map((item: any, index: number) => {
@@ -59,8 +72,15 @@ const GameTypePage = () => {
         )
     }
     return (
-        <div className="flex flex-col pt-10 justify-items-center justify-center ">
-            <h1 className="text-center py-5 text-2xl font-bold text-gray-500" >Game, What you can play in our trufs</h1>
+        <div className="flex flex-col pt-10 justify-items-center justify-center relative">
+            <h1 className="text-center py-5 text-2xl font-bold text-gray-500" data-aos="zoom-in">Game, What you can play in our trufs</h1>
+            <Space >
+                <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
+                    <Select className="text-lg" style={{ height: '40px' }} defaultValue="All criteria" options={options} />
+                    <Input defaultValue="Type for what you search" style={{ height: '40px', width: '100%' }} />
+                    <Button className="bg-blue-500 text-white text-lg" style={{ height: '40px' }}>Submit</Button>
+                </Space.Compact>
+            </Space>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 justify-items-center justify-center shadow-2xl mx-10 p-10 rounded-md">
                 {
                     showGameTypes(gameTypes)

@@ -26,7 +26,7 @@ const Reviews = () => {
 
     return (
         <div className="flex flex-col pt-4 justify-items-center justify-center w-full relative scroll-area">
-            <h1 className="text-center  py-5 pr-16 md:pr-0 text-lg md:text-2xl font-bold text-gray-500">Reviews, that are top listed</h1>
+            <h1 className="text-center  py-5 pr-16 md:pr-0 text-lg md:text-2xl font-bold text-gray-500" data-aos="zoom-in">Reviews, that are top listed</h1>
             <div
                 data-aos="fade-up"
                 ref={ref}
