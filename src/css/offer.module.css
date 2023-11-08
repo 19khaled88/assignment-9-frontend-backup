@@ -1,0 +1,8 @@
+.hoverItem {
+    transition: 0.3s;
+    
+  }
+  .hoverItem:hover {
+    transform: translate(0, -10px);
+    
+  }

@@ -1,8 +1,7 @@
 'use client'
 import { Input } from 'antd';
-import { ChangeEventHandler } from 'react';
 
-import { ChangeHandler, Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 type handleChange = (
   value: string,
@@ -19,9 +18,10 @@ type Change<T extends HTMLElement> = handleChange | eventHandleChange<T>;
 interface IInput {
   type?: string;
   name: string;
-  size?: 'large' | 'small'
+  size?: 'large' | 'small';
   value?: string | string[] | undefined;
   id?: string;
+  required?: boolean;
   placeholder?: string;
   validate?: object;
   label?: string;
@@ -30,7 +30,7 @@ interface IInput {
   // onChange?: Change<HTMLInputElement>;
 }
 
-const FormInput = ({ type, name, size, validate, value, id, placeholder, className, label }: IInput
+const FormInput = ({ type, name, size, validate, value, id, placeholder, className, label, required }: IInput
   // & React.InputHTMLAttributes<HTMLInputElement>
 ) => {
   const { control } = useFormContext();
@@ -45,7 +45,7 @@ const FormInput = ({ type, name, size, validate, value, id, placeholder, classNa
         control={control}
         name={name}
         
-        render={({ field}) => (
+        render={({ field }) => (
 
           type === 'password' ?
             (
@@ -53,6 +53,7 @@ const FormInput = ({ type, name, size, validate, value, id, placeholder, classNa
                 type={type}
                 size={size}
                 placeholder={placeholder}
+                required={true}
                 {...field}
                 // onChange={(e)=>{}}
                 value={value ? value : field.value}
@@ -63,10 +64,11 @@ const FormInput = ({ type, name, size, validate, value, id, placeholder, classNa
                 type={type}
                 size={size}
                 placeholder={placeholder}
+                required={true}
                 {...field}
-               
+
                 // onChange={(e)=>{}}
-               
+
                 // onChange={field.onChange}
                 value={value ? value : field.value}
               />

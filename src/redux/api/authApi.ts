@@ -1,6 +1,6 @@
 import { IMeta, IUserResonse } from "@/types"
 import { baseApi } from "./baseApi"
-
+import config from '../../helpers/config'
 const AUTH_URL = '/user'
 export const authApi = baseApi.injectEndpoints({
   
@@ -10,6 +10,14 @@ export const authApi = baseApi.injectEndpoints({
         url: `${AUTH_URL}/signin`,
         method: 'POST',
         data: loginData
+      }),
+      invalidatesTags: ['User']
+    }),
+    userRegister:build.mutation({
+      query:(registerData)=>({
+        url :`${AUTH_URL}/signup`,
+        method: 'POST',
+        data:registerData 
       }),
       invalidatesTags: ['User']
     }),
@@ -50,4 +58,4 @@ export const authApi = baseApi.injectEndpoints({
   //   overrideExisting: false,
 })
 
-export const { useUserLoginMutation, useAllUserQuery, useUserProfileQuery,useUserUpdateMutation } = authApi
+export const { useUserLoginMutation, useAllUserQuery, useUserProfileQuery,useUserUpdateMutation,useUserRegisterMutation } = authApi
