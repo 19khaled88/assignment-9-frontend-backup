@@ -35,10 +35,12 @@ const OfferPage = () => {
     ];
     const query: Record<string, any> = {}
     const { data: offers, isLoading, isError, error } = useAllOffersQuery({ ...query })
-
+    if(offers != undefined){
+        console.log(offers)
+    }
     const showOffers = (offers: any): ReactNode => {
         let array: any[] = []
-        offers?.data.map((item: any, index: number) => {
+     offers != undefined &&  offers?.data.map((item: any, index: number) => {
             array.push(
                 <div key={index} className={`${styles.hoverItem} max-w-sm p-6 w-64 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
                     <div data-aos="fade-up">

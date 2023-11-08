@@ -1,4 +1,5 @@
-import { IMeta, IOfferResponse } from "@/types"
+// import { IMeta, IOfferResponse } from "@/types"
+import { IMeta } from "@/types"
 import { baseApi } from "./baseApi"
 
 const BOOKING_URL = '/game-offer'
@@ -10,13 +11,13 @@ export const offerfApi = baseApi.injectEndpoints({
                 method:'GET',
                 params:arg
             }),
-            transformErrorResponse: (response: IOfferResponse, meta: IMeta) => {
+            transformErrorResponse: (response: any, meta: IMeta) => {
                 return {
                   offers: response,
                   meta
                 }
-              }
-            
+              },
+              providesTags:['Offers']
         })
     })
 })
