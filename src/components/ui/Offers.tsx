@@ -25,28 +25,27 @@ const OfferPage = () => {
       }, [isInView]);
       const options = [
         {
-            value: 'zhejiang',
-            label: 'Zhejiang',
+            // value: 'zhejiang',
+            // label: 'Zhejiang',
         },
-        {
-            value: 'jiangsu',
-            label: 'Jiangsu',
-        },
+        // {
+        //     value: 'jiangsu',
+        //     label: 'Jiangsu',
+        // },
     ];
     const query: Record<string, any> = {}
     const { data: offers, isLoading, isError, error } = useAllOffersQuery({ ...query })
-    if(offers != undefined){
-        console.log(offers)
-    }
+   
     const showOffers = (offers: any): ReactNode => {
         let array: any[] = []
      offers != undefined &&  offers?.data.map((item: any, index: number) => {
             array.push(
                 <div key={index} className={`${styles.hoverItem} max-w-sm p-6 w-64 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
                     <div data-aos="fade-up">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Turf : {item.turf.name}</h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Location : Fields : {item.field.code}</p>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Game : {item.gameType.name}</p>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Turf : {item.turfId
+}</h5>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Location : Fields : {item.fieldId}</p>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Game : {item.gameTypeId}</p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Pay per hour : {item.price_per_hour} {'\u09f3'}</p>
                     <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Book

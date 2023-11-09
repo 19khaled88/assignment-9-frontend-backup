@@ -87,7 +87,7 @@ const Reviews = () => {
             <div>
                 <Image
                     src={review_fancy}
-                    data-aos="fade-left"
+                    data-aos="fade-up"
                     alt="No Image"
                     width={200}
                     height={200}
