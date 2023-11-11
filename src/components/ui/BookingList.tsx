@@ -47,7 +47,8 @@ const BookingList = () => {
     //     }
     // },[bookings,isLoading, bookings.data])
 
-
+    console.log(bookings)
+    
     useEffect(() => {
         if (!isLoading) {
             setAllBooking(bookings?.data)

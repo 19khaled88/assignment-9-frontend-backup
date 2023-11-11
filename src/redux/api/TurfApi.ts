@@ -17,8 +17,15 @@ export const turfApi = baseApi.injectEndpoints({
                 }
               },
               providesTags: ['Turfs']
-        })
+        }),
+        turfWithId: build.query({
+            query: (id: string) => ({
+              url: `${BOOKING_URL}/single/${id}`,
+              method: 'GET'
+            }),
+            providesTags:['Turfs']
+          }),
     })
 })
 
-export const { useAllTurfsQuery } = turfApi
+export const { useAllTurfsQuery,useTurfWithIdQuery } = turfApi

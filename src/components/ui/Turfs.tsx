@@ -1,11 +1,14 @@
-
+'use client'
 import { useAllTurfsQuery } from "@/redux/api/TurfApi";
 import { Button, Input, Select, Space } from "antd";
 import AOS from "aos";
 import { useInView } from "framer-motion";
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from "../../css/turf.module.css";
+
 
 const override: CSSProperties = {
     display: "block",
@@ -13,15 +16,18 @@ const override: CSSProperties = {
     borderColor: "red",
 };
 
+
 const Turfs = () => {
     const ref = useRef(null);
     const isInView = useInView(ref);
     const [searchData, setSearchData] = useState<string>('')
     const [searchTitle, setSearchTitle] = useState<string>('name')
     const [query, setQuery] = useState<Record<string, any>>({})
-    const { Search } = Input;
 
-    const options = [
+    
+
+
+    const allOptions = [
         {
             value: 'all',
             label: 'select all',
@@ -67,7 +73,6 @@ const Turfs = () => {
     } = useAllTurfsQuery({ ...query });
 
 
-
     const showTurfs = (turfs: any): ReactNode => {
         let array: any[] = [];
         turfs?.data.data.map((item: any, index: number) => {
@@ -87,8 +92,11 @@ const Turfs = () => {
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                             Owner : {item.owner}
                         </p>
-                        <a
-                            href="#"
+                        
+                        <Link
+                            href={{ pathname: 'single', query: { id: item.id, group: 'turf' } }}
+                            // href={`/single/${item.id}`}
+                            // href={('single/' + item.id) as Route}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center 
                             text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none 
                             focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -109,7 +117,7 @@ const Turfs = () => {
                                     d="M1 5h12m0 0L9 1m4 4L9 9"
                                 />
                             </svg>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             );
@@ -162,7 +170,7 @@ const Turfs = () => {
                             className="text-lg"
                             style={{ height: "40px" }}
                             defaultValue="name"
-                            options={options}
+                            options={allOptions}
                             onChange={(value: string) => setSearchTitle(value)}
                         />
                         <Input
@@ -202,7 +210,7 @@ const Turfs = () => {
                             className="text-lg"
                             style={{ height: "40px" }}
                             defaultValue="name"
-                            options={options}
+                            options={allOptions}
                             onChange={(value: string) => setSearchTitle(value)}
                         />
                         <Input
@@ -248,7 +256,7 @@ const Turfs = () => {
                         className="text-lg"
                         style={{ height: "40px" }}
                         defaultValue="name"
-                        options={options}
+                        options={allOptions}
                         onChange={(value: string) => setSearchTitle(value)}
                     />
                     <Input

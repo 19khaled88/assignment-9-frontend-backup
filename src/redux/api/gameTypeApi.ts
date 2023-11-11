@@ -17,8 +17,15 @@ export const gameTypeApi = baseApi.injectEndpoints({
                 }
               },
               providesTags: ['Gametypes']
-        })
+        }),
+        gameTypeWithId: build.query({
+            query: (id: string) => ({
+              url: `${BOOKING_URL}/single/${id}`,
+              method: 'GET'
+            }),
+            providesTags:['Gametypes']
+          }),
     })
 })
 
-export const { useAllGameTypesQuery } = gameTypeApi
+export const { useAllGameTypesQuery,useGameTypeWithIdQuery } = gameTypeApi

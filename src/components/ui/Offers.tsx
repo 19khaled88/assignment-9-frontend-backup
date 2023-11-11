@@ -1,4 +1,5 @@
 import { useAllOffersQuery } from '@/redux/api/offerApi'
+import Link from 'next/link'
 import { ReactNode, useEffect, useRef } from 'react'
 import {useInView} from 'framer-motion'
 import { SearchOutlined } from '@ant-design/icons';
@@ -9,7 +10,7 @@ import AOS from 'aos'
 const OfferPage = () => {
     const ref = useRef(null)
     const isInView = useInView(ref)
-    const { Search } = Input;
+  
     useEffect(() => {
         AOS.init({
             delay:30,
@@ -47,12 +48,14 @@ const OfferPage = () => {
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Location : Fields : {item.fieldId}</p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Game : {item.gameTypeId}</p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Pay per hour : {item.price_per_hour} {'\u09f3'}</p>
-                    <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <Link
+                    href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
                         Book
                         <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
-                    </a>
+                    </Link>
                 </div>
                 </div>
             )
@@ -61,6 +64,21 @@ const OfferPage = () => {
     }
 
     if (isLoading) {
+        return (
+            <div className="flex flex-col pt-10 justify-items-center justify-center ">
+                <h1 className="text-center py-5 text-2xl font-bold text-gray-500">Book you slot here</h1>
+                <div role="status" className="max-w-sm animate-pulse ">
+                    <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>
+        )
+    }else if (offers === undefined) {
         return (
             <div className="flex flex-col pt-10 justify-items-center justify-center ">
                 <h1 className="text-center py-5 text-2xl font-bold text-gray-500">Book you slot here</h1>
