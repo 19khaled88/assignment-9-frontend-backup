@@ -10,7 +10,7 @@ export default function Single() {
 
     const id = searchParams.get('id')
     const group = searchParams.get('group')
-    // const myState = history?.state;
+   
    
     const detailsProps: Record<string, unknown> = {
         id:id,

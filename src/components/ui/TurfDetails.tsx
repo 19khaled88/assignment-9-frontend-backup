@@ -30,7 +30,7 @@ const TurfDetails = ({ ...detailsProps }) => {
                             {fields[i]?.code}
                         </h5>
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Location : {fields[i]?.size}
+                            Size : {fields[i]?.size}
                         </p>
 
                     </div>
@@ -56,7 +56,7 @@ const TurfDetails = ({ ...detailsProps }) => {
                             fields : {games[i]?.turfId}
                         </p>
                         <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-                            fields : {games[i]?.price_per_hour}
+                            Price : {games[i]?.price_per_hour}
                         </p>
 
                     </div>

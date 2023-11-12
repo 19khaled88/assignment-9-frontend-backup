@@ -3,7 +3,8 @@ const nextConfig = {
     // images:{
     //     disableStaticImages:true
     // }
-    reactStrictMode: false
+    reactStrictMode: false,
+   
 }
 
 module.exports = nextConfig
