@@ -94,12 +94,12 @@ const OfferPage = () => {
 
         try {
             const res = await createBooking({ ...store }).unwrap();
-            console.log(res)
+            // console.log(res)
             if (res) {
                 toast.success('booking completed')
             }
         } catch (error: any) {
-            console.log(error)
+            // console.log(error)
             toast.error(error?.data?.message)
         }
     }

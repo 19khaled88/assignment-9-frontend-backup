@@ -33,12 +33,12 @@ const ContentPage = ({ children }: { children: React.ReactNode }) => {
             // }
           ]
         } />
-        <div style={{ padding: 24, minHeight: 460, background: colorBgContainer }}>
+        <div style={{ padding: 15, minHeight: 460, background: colorBgContainer }}>
           {children}
         </div>
       </Content>
       
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>ABC Turf ©2023 Created by Turf community</Footer>
     </Layout>
   )
 }

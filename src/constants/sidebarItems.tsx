@@ -1,11 +1,18 @@
 'use client'
 import {
     ProfileOutlined,
-    UserOutlined
+    AppstoreAddOutlined,
+    FormOutlined,
+    OrderedListOutlined,
+    DeploymentUnitOutlined,
+    GiftOutlined,
+    UserOutlined,
+    SelectOutlined
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import Link from 'next/link'
 export const sidebarItems = (role: any) => {
+
 
     const defaultSidebarItems: MenuProps['items'] = [
         {
@@ -16,12 +23,12 @@ export const sidebarItems = (role: any) => {
                 {
                     icon: < UserOutlined />,
                     label: <Link href={`/profile/user`}>User profile</Link>,
-                    key: `/profile`
+                    key: `/user/profile`
                 },
                 {
                     icon: < UserOutlined />,
                     label: <Link href={`/profile/user/bookings`}>Bookings</Link>,
-                    key: `/bookings`
+                    key: `/user/bookings`
                 },
                 // {
                 //     icon:< KeyOutlined/>,
@@ -40,12 +47,37 @@ export const sidebarItems = (role: any) => {
                 {
                     icon: < UserOutlined />,
                     label: <Link href={`/profile/admin`}>Admin profile</Link>,
-                    key: `/admin`
+                    key: `/profile/admin`
                 },
                 {
-                    icon: < UserOutlined />,
-                    label: <Link href={`/profile/list`}>User List</Link>,
-                    key: `/list`
+                    icon: <OrderedListOutlined />,
+                    label: <Link href={`/profile/admin/users`}>User list</Link>,
+                    key: `/admin/users`
+                },
+                {
+                    icon: < AppstoreAddOutlined />,
+                    label: <Link href={`/profile/admin/turf`}>Turfs</Link>,
+                    key: `/admin/turf`
+                },
+                {
+                    icon: < AppstoreAddOutlined />,
+                    label: <Link href={`/profile/admin/fields`}>Fields</Link>,
+                    key: `/admin/fields`
+                },
+                {
+                    icon: <SelectOutlined />,
+                    label: <Link href={`/profile/admin/bookings`}>Bookings</Link>,
+                    key: `/admin/bookings`
+                },
+                {
+                    icon: <DeploymentUnitOutlined />,
+                    label: <Link href={`/profile/admin/gameTypes`}>Game Types</Link>,
+                    key: `/admin/gameTypes`
+                },
+                {
+                    icon: <GiftOutlined />,
+                    label: <Link href={`/profile/admin/offers`}>Offers</Link>,
+                    key: `/admin/offers`
                 },
                 // {
                 //     icon:< KeyOutlined/>,
@@ -54,28 +86,26 @@ export const sidebarItems = (role: any) => {
                 // }
             ]
         }
+      
+        // {
+        //     label:<Link href={`/profile/admin`}>Profile</Link>,
+        //     key:'profile',
+        //     icon:< ProfileOutlined />,
+        // },
+        // {
+        //     label:<Link href={`/profile/list`}>User List</Link>,
+        //     key:'profile/list',
+        //     icon:< ProfileOutlined />,
+        // },
 
         // {
-        //     icon:< UsergroupAddOutlined/>,
-        //     label:<Link href={`/${role}/update`}>Update</Link>,
-        //     key:`/${role}/update`
-        // },
-        // {
-        //     icon:< UsergroupAddOutlined/>,
-        //     label:<Link href={`/${role}/all`}>All Admins</Link>,
-        //     key:`/${role}/all`
-        // },
-
-        // {
-        //     icon:< UsergroupAddOutlined/>,
-        //     label:<Link href={`/${role}/manaege-fields`}>Manaege-fields</Link>,
-        //     key:`/${role}/manaege-fields`
-        // },
-        // {
-        //     icon:< UsergroupAddOutlined/>,
-        //     label:<Link href={`/${role}/manaege-turf`}>Manage Turfs</Link>,
-        //     key:`/${role}/manaege-turf`
+        //     label: <Link href={`/profile/admin/turf`}>Add Turf</Link>,
+        //     key: 'profile/admin/features',
+        //     icon: <FormOutlined />,
+          
         // }
+
+       
     ]
     const superAdminSidebarItem: MenuProps['items'] = [
 
@@ -118,4 +148,5 @@ export const sidebarItems = (role: any) => {
     if (role && role.role === 'SUPER_ADMIN') return superAdminSidebarItem;
     else if (role && role.role === 'ADMIN') return commonAdminSidebarItem;
     else return defaultSidebarItems;
+
 }

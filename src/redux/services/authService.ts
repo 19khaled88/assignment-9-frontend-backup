@@ -1,6 +1,6 @@
 import { AuthTokenKey } from "@/constants/tokenKey"
 import { decodedToken } from "@/utils/jwt"
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
+// import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 import { getTokenFromLocalStorage, getTokenLocalStorage, setToeknToLocalStorage } from "@/utils/localstorage"
 
 export const storeUserInfo = ({ token }: { token: string }) => {

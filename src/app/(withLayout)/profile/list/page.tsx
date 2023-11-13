@@ -1,5 +1,4 @@
-import ListTable from '@/components/ui/ListTable'
-import React from 'react'
+import ListTable from '@/components/ui/UserList'
 
 const page = () => {
   return (

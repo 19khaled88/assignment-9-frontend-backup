@@ -44,12 +44,12 @@ const LoginPage = () => {
         router.push("/login");
       }
       if (res && res.token) {
-        console.log(res)
+       
         storeUserInfo({ token: res?.token });
         router.push("/profile");
       }
     } catch (error: any) {
-      console.log(error);
+   
       toast.error(error?.data.data);
     }
   };

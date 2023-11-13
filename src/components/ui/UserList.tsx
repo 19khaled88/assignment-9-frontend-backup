@@ -2,10 +2,10 @@
 import { useAllUserQuery } from '@/redux/api/authApi'
 import { Button, Table } from 'antd'
 import { useEffect, useState } from 'react'
-const ListTable = () => {
-    const query:Record<string, any> = {}
+const UserListTable = () => {
+    const query: Record<string, any> = {}
     const [allUser, setAllUser] = useState([])
-    const [size ,setSize] = useState<number>(10)
+    const [size, setSize] = useState<number>(10)
     const [page, setPage] = useState<number>(1)
     const [sortBy, setSortBy] = useState<string>("")
     const [sortOrder, setSortOrder] = useState<string>("")
@@ -14,16 +14,15 @@ const ListTable = () => {
     query['sortBy'] = sortBy
     query['sortOrder'] = sortOrder
 
-    const {data:users,isLoading} = useAllUserQuery({...query})
-    
-    useEffect(()=>{
-        if(!isLoading){
+    const { data: users, isLoading } = useAllUserQuery({ ...query })
+
+    useEffect(() => {
+        if (!isLoading) {
             setAllUser(users?.data.data)
         }
-    },[isLoading, users?.data.data])
+    }, [isLoading, users?.data.data])
 
-    
-    
+
     const columns = [
         {
             title: 'Name',
@@ -52,10 +51,10 @@ const ListTable = () => {
         },
         {
             title: 'Action',
-            render: function (data:any) {
+            render: function (data: any) {
                 return (
-                    <div style={{display:'flex',flexDirection:'row',gap:'5px'}}>
-                        <Button onClick={()=>console.log(data)} type='primary'>update</Button>
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
+                        <Button onClick={() => console.log(data)} type='primary'>update</Button>
                         <Button type="primary" danger>delete</Button>
                     </div>
                 )
@@ -81,8 +80,8 @@ const ListTable = () => {
         setSize(pageSise)
     }
 
-    const onTableChange =(pagination:any,filter:any,sorter:any)=>{
-        const {order, field} = sorter
+    const onTableChange = (pagination: any, filter: any, sorter: any) => {
+        const { order, field } = sorter
         setSortBy(field as string)
         setSortOrder(order === 'ascend' ? 'asc' : 'desc')
     }
@@ -102,4 +101,4 @@ const ListTable = () => {
     />
 }
 
-export default ListTable
+export default UserListTable
