@@ -1,9 +1,9 @@
 'use client'
-import { useAllTurfsQuery, useDeleteTurfWithIdMutation, useEditTurfMutation } from '@/redux/api/TurfApi'
+import { useAllGameTypesQuery, useDeleteGameTypefWithIdMutation, useEditGameTypeMutation } from '@/redux/api/gameTypeApi'
 import { Button, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-const TurfListTable = () => {
+const GameTypeListTable = () => {
     const query: Record<string, any> = {}
     const [allTurf, setAllTurf] = useState([])
     const [size, setSize] = useState<number>(10)
@@ -16,62 +16,77 @@ const TurfListTable = () => {
     query['sortBy'] = sortBy
     query['sortOrder'] = sortOrder
 
-    const { data: turfs, isLoading } = useAllTurfsQuery({ ...query })
-    const [deleteTurf, { isLoading: deleteLoading, isSuccess: deleteSuccess, isError: deleteError }] = useDeleteTurfWithIdMutation()
-    const [updateTurf, { isLoading: editloading, isSuccess: editSuccess }] = useEditTurfMutation()
+    const { data: gameTypes, isLoading } = useAllGameTypesQuery({ ...query })
+    const [deleteGameType, { isLoading: deleteLoading, isSuccess: deleteSuccess, isError: deleteError }] = useDeleteGameTypefWithIdMutation()
+    const [updateGameType, { isLoading: editloading, isSuccess: editSuccess }] = useEditGameTypeMutation()
 
     const [inputsValue, setValues] = useState({
         name: '',
-        location: '',
-        owner: ''
-      })
+        numberOfPalyers: ''
+    })
 
     useEffect(() => {
         if (!isLoading) {
-            setAllTurf(turfs?.data.data)
+            setAllTurf(gameTypes?.data.data)
         }
-    }, [isLoading, turfs?.data.data])
+    }, [isLoading, gameTypes?.data.data])
 
     //delete turf
-    const deleteTurfHandler = async (id: string) => {
-        await deleteTurf(id)
+    const deleteGameTypeHandler = async (id: string) => {
+        try {
+            const res = await deleteGameType(id).unwrap()
+            if (res.statusCode === 200 && res.success === true) {
+                toast.success(res.message)
+            }
+        } catch (error: any) {
+            toast.error(error.message)
+        }
 
     }
 
-    if (deleteSuccess === true) {
-        toast.success('turf deleted successfully')
-    } else if (deleteError === true) {
-        toast.error('Not deleted!')
-    }
+    // if (deleteSuccess === true) {
+    //     toast.success('Game type deleted successfully')
+    // } else if (deleteError === true) {
+    //     toast.error('Not deleted!')
+    // }
 
-    const showEditTurf = (mod:any,note:any) => {
+    const showEditGameType = (mod: any, note: any) => {
         (document.getElementById(mod) as HTMLFormElement).showModal();
         setValues({
             ...inputsValue,
-            name:note.name,
-            location:note.location,
-            owner:note.owner
+            name: note.name,
+            numberOfPalyers: note.numberOfPalyers
         })
-       setEditId(note.id)
+        setEditId(note.id)
     }
 
-    const handleChange=(event:any)=>{
+    const handleChange = (event: any) => {
         const { name, value } = event.target
         setValues({
-          ...inputsValue,
-          [name]: value
+            ...inputsValue,
+            [name]: name === 'numberOfPalyers' && value != "" ? parseInt(value) : value
         })
     }
 
-    const closeAndCleanForm=()=>{
+    const closeAndCleanForm = () => {
         (document.getElementById("cleanUpdateFormData") as HTMLFormElement).reset();
-        setValues({ name: '', location: '', owner: '' });
+        setValues({ name: '', numberOfPalyers: '' });
     }
 
-    const submitHandler=async()=>{
-        const id = editId
-        const res = await updateTurf({id,...inputsValue})
-        console.log(res)
+    const submitHandler = async () => {
+        try {
+            const store = {
+                ...inputsValue,
+                'numberOfPalyers': parseInt(inputsValue['numberOfPalyers'])
+            }
+            const id = editId
+            const res = await updateGameType({ id, ...store }).unwrap()
+            if (res.statusCode === 200 && res.success === true) {
+                toast.success(res.message)
+            }
+        } catch (error: any) {
+            toast.error(error.message)
+        }
     }
 
     //update turf
@@ -84,27 +99,23 @@ const TurfListTable = () => {
 
     const columns = [
         {
-            title: 'Name',
+            title: 'Game_Name',
             dataIndex: 'name',
             key: 'name'
         },
+
         {
-            title: 'Location',
-            dataIndex: 'location',
-            key: 'location'
-        },
-        {
-            title: 'Owner',
-            dataIndex: 'owner',
-            key: 'owner'
+            title: 'Number of Player',
+            dataIndex: 'numberOfPalyers',
+            key: 'numberOfPalyers'
         },
         {
             title: 'Action',
             render: function (data: any) {
                 return (
                     <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-                        <Button onClick={() => showEditTurf('my_modal_3',data)} type='primary'>update</Button>
-                        <Button onClick={() => deleteTurfHandler(data.id)} type="primary" danger>delete</Button>
+                        <Button onClick={() => showEditGameType('my_modal_3', data)} type='primary'>update</Button>
+                        <Button onClick={() => deleteGameTypeHandler(data.id)} type="primary" danger>delete</Button>
                     </div>
                 )
             }
@@ -143,14 +154,10 @@ const TurfListTable = () => {
                     </div>
                     <div>
                         <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-                        <input type="text" onChange={handleChange} defaultValue={inputsValue['location']} id="small-input" name="location" className={`block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} />
-                        <p id="locationError"></p>
+                        <input type="text" onChange={handleChange} defaultValue={inputsValue['numberOfPalyers']} id="small-input" name="numberOfPalyers" className={`block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} />
+
                     </div>
-                    <div>
-                        <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
-                        <input type="text" onChange={handleChange} defaultValue={inputsValue['owner']} id="small-input" name="owner" className={`block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} />
-                        <p id="ownerError"></p>
-                    </div>
+
                     <div className="flex flex-row justify-between">
                         <button
                             onClick={() => submitHandler()}
@@ -175,4 +182,4 @@ const TurfListTable = () => {
 
 }
 
-export default TurfListTable
+export default GameTypeListTable

@@ -6,14 +6,7 @@ import { useAllTurfsQuery } from '@/redux/api/TurfApi'
 import { useCreateFieldMutation } from '@/redux/api/fieldApi'
 import { toast } from 'react-toastify'
 
-type fieldsCreateError ={
-  error?:{
-    status?:string,
-    data?:{
-      message:string
-    }
-  } 
-}
+
 
 const Fields = () => {
   const query: Record<string, any> = {}
@@ -71,7 +64,6 @@ const Fields = () => {
         toast.success('New Field created successfully');
       } 
     } catch (error:any) {
-      // console.log(error?.status,error?.data?.message)
       toast.error(error?.data?.message)
     }
    

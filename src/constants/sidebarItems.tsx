@@ -65,15 +65,16 @@ export const sidebarItems = (role: any) => {
                     key: `/admin/fields`
                 },
                 {
-                    icon: <SelectOutlined />,
-                    label: <Link href={`/profile/admin/bookings`}>Bookings</Link>,
-                    key: `/admin/bookings`
-                },
-                {
                     icon: <DeploymentUnitOutlined />,
                     label: <Link href={`/profile/admin/gameTypes`}>Game Types</Link>,
                     key: `/admin/gameTypes`
                 },
+                {
+                    icon: <SelectOutlined />,
+                    label: <Link href={`/profile/admin/bookings`}>Bookings</Link>,
+                    key: `/admin/bookings`
+                },
+                
                 {
                     icon: <GiftOutlined />,
                     label: <Link href={`/profile/admin/offers`}>Offers</Link>,
