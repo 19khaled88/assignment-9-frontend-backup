@@ -69,7 +69,6 @@ const OfferPage = () => {
         } else if (userInfo.role === 'ADMIN' || userInfo.role === 'SUPER_ADMIN') {
             toast.info('Only customer or user can book')
         } else {
-
             (document.getElementById(mod) as HTMLFormElement).showModal()
             setUserId(userInfo.userId)
             setBookingData(item)
@@ -151,6 +150,7 @@ const OfferPage = () => {
         return array
     }
 
+    console.log(offers)
 
     if (isLoading) {
         return (
