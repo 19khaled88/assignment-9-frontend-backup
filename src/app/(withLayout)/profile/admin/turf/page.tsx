@@ -40,13 +40,15 @@ const TurfAdd = () => {
       return null
     }
 
-    const res = await createTurf({ ...inputsValue }).unwrap();
+    try {
+      const res = await createTurf({ ...inputsValue }).unwrap();
 
-    if (res.statusCode === 200 && res.success === true) {
-      (document.getElementById("cleanFormData") as HTMLFormElement).reset();
-      toast.success('New turf created successfully');
-    } else {
-      toast.error('Something went wrong!')
+      if (res.statusCode === 200 && res.success === true) {
+        (document.getElementById("cleanFormData") as HTMLFormElement).reset();
+        toast.success('New turf created successfully');
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message)
     }
 
   }
@@ -64,8 +66,8 @@ const TurfAdd = () => {
 
 
   return (
-    <div className="relative ">
-      <Button className="absolute z-20 right-5 -top-0" onClick={() => handleAddTurf('my_modal_2')} type='primary'>Add</Button>
+    <div className="relative">
+      <Button className="absolute z-20 right-5 -top-0" onClick={() => handleAddTurf('my_modal_2')} type='primary'>Add Turf</Button>
       <dialog id="my_modal_2" className={`${hideForm === true ? 'hidden' : 'visible'} modal mx-auto my-auto rounded-md shadow-2xl`} style={{ width: '500px' }}>
         <div className="modal-box">
           <h3 className="font-bold text-lg text-center pt-10 ">Insert Turf</h3>

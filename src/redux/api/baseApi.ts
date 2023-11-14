@@ -9,6 +9,6 @@ export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
   endpoints: (builder) => ({}),
-  tagTypes: ['User','Bookings','Gametypes','Turfs','Offers']
+  tagTypes: ['User','Bookings','Gametypes','Turfs','Offers','Fields']
 })
 
