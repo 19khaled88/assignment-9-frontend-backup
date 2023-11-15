@@ -33,6 +33,13 @@ export const fieldApi = baseApi.injectEndpoints({
       }),
       providesTags: ['Fields']
     }),
+    fieldWithTurfId:build.query({
+      query: (id: string) => ({
+        url: `${FIELD_URL}/singleTurfId/${id}`,
+        method: 'GET'
+      }),
+      providesTags: ['Fields']
+    }),
     deleteFieldfWithId: build.mutation({
       query: (id: string) => ({
         url: `${FIELD_URL}/delete/${id}`,
@@ -51,4 +58,4 @@ export const fieldApi = baseApi.injectEndpoints({
   })
 })
 
-export const { useAllFieldsQuery, useFieldWithIdQuery, useCreateFieldMutation, useDeleteFieldfWithIdMutation,useEditFieldMutation } = fieldApi
+export const { useAllFieldsQuery, useFieldWithIdQuery, useCreateFieldMutation, useDeleteFieldfWithIdMutation,useEditFieldMutation,useFieldWithTurfIdQuery,useLazyFieldWithIdQuery } = fieldApi

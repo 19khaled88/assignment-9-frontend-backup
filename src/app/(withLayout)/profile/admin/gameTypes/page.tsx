@@ -70,7 +70,7 @@ const GameType = () => {
 
   return (
     <div className="relative">
-      <Button className="absolute z-20 right-5 -top-0" onClick={() => handleAddField('my_modal_2')} type='primary'>Add Game Type</Button>
+      <Button className="absolute z-20 right-5 -top-5" onClick={() => handleAddField('my_modal_2')} type='primary'>Add Game Type</Button>
       <dialog id="my_modal_2" className={`${hideForm === true ? 'hidden' : 'visible'} modal mx-auto my-auto rounded-md shadow-2xl`} style={{ width: '500px' }}>
         <div className="modal-box">
           <h3 className="font-bold text-lg text-center pt-10 ">Insert Game Type</h3>

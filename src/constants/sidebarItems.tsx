@@ -1,13 +1,12 @@
 'use client'
 import {
-    ProfileOutlined,
     AppstoreAddOutlined,
-    FormOutlined,
-    OrderedListOutlined,
     DeploymentUnitOutlined,
     GiftOutlined,
-    UserOutlined,
-    SelectOutlined
+    OrderedListOutlined,
+    ProfileOutlined,
+    SelectOutlined,
+    UserOutlined
 } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import Link from 'next/link'
@@ -70,16 +69,17 @@ export const sidebarItems = (role: any) => {
                     key: `/admin/gameTypes`
                 },
                 {
-                    icon: <SelectOutlined />,
-                    label: <Link href={`/profile/admin/bookings`}>Bookings</Link>,
-                    key: `/admin/bookings`
-                },
-                
-                {
                     icon: <GiftOutlined />,
                     label: <Link href={`/profile/admin/offers`}>Offers</Link>,
                     key: `/admin/offers`
                 },
+                {
+                    icon: <SelectOutlined />,
+                    label: <Link href={`/profile/admin/bookings`}>Bookings</Link>,
+                    key: `/admin/bookings`
+                },
+
+
                 // {
                 //     icon:< KeyOutlined/>,
                 //     label:<Link href={`/${role}/change-password`}>Change password</Link>,
@@ -87,7 +87,7 @@ export const sidebarItems = (role: any) => {
                 // }
             ]
         }
-      
+
         // {
         //     label:<Link href={`/profile/admin`}>Profile</Link>,
         //     key:'profile',
@@ -103,10 +103,10 @@ export const sidebarItems = (role: any) => {
         //     label: <Link href={`/profile/admin/turf`}>Add Turf</Link>,
         //     key: 'profile/admin/features',
         //     icon: <FormOutlined />,
-          
+
         // }
 
-       
+
     ]
     const superAdminSidebarItem: MenuProps['items'] = [
 
