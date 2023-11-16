@@ -1,10 +1,10 @@
 'use client'
 import { useAllTurfsQuery } from "@/redux/api/TurfApi";
-import { Button, Input, Select, Space } from "antd";
+import { Button, Image, Input, Select, Space } from "antd";
 
 import AOS from "aos";
 import { useInView } from "framer-motion";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from 'next/link';
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import PropagateLoader from 'react-spinners/PropagateLoader';
@@ -24,8 +24,6 @@ const Turfs = () => {
     const [searchData, setSearchData] = useState<string>('')
     const [searchTitle, setSearchTitle] = useState<string>('name')
     const [query, setQuery] = useState<Record<string, any>>({})
-
-
 
 
     const allOptions = [
@@ -78,9 +76,8 @@ const Turfs = () => {
         let array: any[] = [];
         turfs?.data.data.map((item: any, index: number) => {
             array.push(
-
-                <div className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
-                    <figure data-aos="flip-left"><Image className="rounded-t-lg" src={item.image} width={50} height={50} alt="Shoes" /></figure>
+                <div key={index} className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
+                    <figure data-aos="flip-left"><Image style={{width:'100%'}} className="rounded-t-lg" src={item.image}  alt="No turf" /></figure>
                     <div className="card-body p-4">
                         <h2 className="card-title">
 

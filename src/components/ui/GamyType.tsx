@@ -60,7 +60,7 @@ const GameTypePage = () => {
             array.push(
 
                 <div className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
-                    <figure data-aos="flip-left"><img className="rounded-t-lg" src={item.image} alt="Shoes" /></figure>
+                    <img className="rounded-t-lg" src={item.image} alt="No game types" />
                     <div className="card-body p-4">
                         <h2 className="card-title">
 
