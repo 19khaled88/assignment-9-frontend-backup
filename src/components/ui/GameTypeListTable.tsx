@@ -116,9 +116,9 @@ const GameTypeListTable = () => {
             // key: 'image',
             render: (data: any) => {
                 return (
-                    <div style={{ width: "90px", height: '90px' }} >
+                   
                         <Image src={data.image} alt='No gameType Image' width={100} height={100} />
-                    </div>
+                   
                 )
             }
         },
