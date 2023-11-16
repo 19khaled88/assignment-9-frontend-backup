@@ -4,12 +4,25 @@ const nextConfig = {
     //     disableStaticImages:true
     // }
     reactStrictMode: false,
-    images:{
-        domains:['res.cloudinary.com'],
-        
-    },
+   images:{
+    domains:['res.cloudinary.com'],
+   }
    
 }
+// module.exports = nextConfig
+export default nextConfig
+
+// const nextConfig = {
+//     // images:{
+//     //     disableStaticImages:true
+//     // }
+//     reactStrictMode: false,
+//     images:{
+//         domains:['res.cloudinary.com'],
+        
+//     },
+   
+// }
 
 // module.exports = {
 //     images: {
@@ -25,4 +38,4 @@ const nextConfig = {
 //     },
 //   }
 
-module.exports = nextConfig
+
