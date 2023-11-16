@@ -1,6 +1,7 @@
 'use client'
 import { useAllTurfsQuery, useDeleteTurfWithIdMutation, useEditTurfMutation } from '@/redux/api/TurfApi'
 import { Button, Table } from 'antd'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 const TurfListTable = () => {
@@ -106,9 +107,12 @@ const TurfListTable = () => {
             // key: 'image',
            render:(data:any)=>{
             return(
-                <div>
-                    <img src={data.image} alt='No Image' width="90px" height="90px"/>
+                <div style={{width:"90px", height:'90px'}} >
+                    <Image src={data.image} alt='No Image' width={100} height={100}/>
                 </div>
+                // <div>
+                //     <img src={data.image} alt='No Image' width="90px" height="90px"/>
+                // </div>
             )
            }
         },

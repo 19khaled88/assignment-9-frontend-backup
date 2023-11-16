@@ -1,6 +1,7 @@
 'use client'
 import { useAllGameTypesQuery, useDeleteGameTypefWithIdMutation, useEditGameTypeMutation } from '@/redux/api/gameTypeApi'
 import { Button, Table } from 'antd'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 const GameTypeListTable = () => {
@@ -115,8 +116,8 @@ const GameTypeListTable = () => {
             // key: 'image',
            render:(data:any)=>{
             return(
-                <div>
-                    <img src={data.image} alt='No Image' width="90px" height="90px"/>
+                <div style={{width:"90px", height:'90px'}} >
+                    <Image src={data.image} alt='No Image' width={100} height={100}/>
                 </div>
             )
            }
