@@ -5,24 +5,20 @@ const nextConfig = {
     // }
     reactStrictMode: false,
    images:{
-    domains:['res.cloudinary.com'],
+    // domains:['res.cloudinary.com'],
+    remotePatterns:[
+        {
+            protocol:'https',
+            hostname:'res.cloudinary.com',
+            pathname:'be-fresh-ltd/image/upload/**'
+        }
+    ]
    }
    
 }
 module.exports = nextConfig
 // export default nextConfig
 
-// const nextConfig = {
-//     // images:{
-//     //     disableStaticImages:true
-//     // }
-//     reactStrictMode: false,
-//     images:{
-//         domains:['res.cloudinary.com'],
-        
-//     },
-   
-// }
 
 // module.exports = {
 //     images: {

@@ -78,7 +78,7 @@ const Turfs = () => {
             array.push(
                 <div key={index} className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
                     <figure data-aos="flip-left">
-                        <Image style={{ width: '100%' }} className="rounded-t-lg" width={500} height={500} src={item.imgurl} alt="No turf" />
+                        <Image style={{ width: '100%' }}  className="rounded-t-lg" width={500} height={500} src={item.imgurl} alt="No turf" />
                     </figure>
                     <div className="card-body p-4">
                         <h2 className="card-title">
