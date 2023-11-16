@@ -6,13 +6,15 @@ const nextConfig = {
     reactStrictMode: false,
    images:{
     // domains:['res.cloudinary.com'],
-    remotePatterns:[
-        {
-            protocol:'https',
-            hostname:'res.cloudinary.com',
-            pathname:'be-fresh-ltd/image/upload/**'
-        }
-    ]
+    loader:'cloudinary',
+    path:'https://res.cloudinary.com/be-fresh-ltd/image/upload/'
+    // remotePatterns:[
+    //     {
+    //         protocol:'https',
+    //         hostname:'res.cloudinary.com',
+    //         pathname:'be-fresh-ltd/image/upload/**'
+    //     }
+    // ]
    }
    
 }

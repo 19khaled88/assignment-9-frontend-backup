@@ -66,7 +66,7 @@ const TurfAdd = () => {
       }).then((response) => response.json()).catch(error => error.json())
 
       if (fetched && !fetched.error) {
-        const store = { ...inputsValue, imgurl: fetched.url }
+        const store = { ...inputsValue, imgurl: fetched.secure_url }
         const res = await createTurf({ ...store }).unwrap();
 
       if (res.statusCode === 200 && res.success === true) {
