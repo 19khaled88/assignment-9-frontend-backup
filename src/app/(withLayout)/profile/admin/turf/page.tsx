@@ -14,7 +14,7 @@ const TurfAdd = () => {
     name: '',
     location: '',
     owner: '',
-    image: ''
+    imgurl: ''
   })
 
   const [emptyError, setEmptyError] = useState<Record<string, unknown>>({
@@ -84,7 +84,7 @@ const TurfAdd = () => {
 
   const closeAndCleanForm = () => {
     (document.getElementById("cleanFormData") as HTMLFormElement).reset();
-    setValues({ name: '', location: '', owner: '', image: '' });
+    setValues({ name: '', location: '', owner: '', imgurl: '' });
 
   }
 

@@ -16,7 +16,7 @@ const GameType = () => {
   const [inputsValue, setValues] = useState({
     name: '',
     numberOfPalyers: '',
-    image:''
+    imgurl:''
   })
 
   const [emptyError, setEmptyError] = useState<Record<string, unknown>>({
@@ -90,7 +90,7 @@ const GameType = () => {
 
   const closeAndCleanForm = () => {
     (document.getElementById("cleanFormData") as HTMLFormElement).reset();
-    setValues({ name: '', numberOfPalyers: '',image:'' });
+    setValues({ name: '', numberOfPalyers: '',imgurl:'' });
   }
 
   return (

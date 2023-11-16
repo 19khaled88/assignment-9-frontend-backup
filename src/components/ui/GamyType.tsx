@@ -1,13 +1,11 @@
-import { useAllGameTypesQuery } from "@/redux/api/gameTypeApi"
-import { ReactNode, useEffect, useRef, useState, CSSProperties } from "react"
-import PropagateLoader from 'react-spinners/PropagateLoader';
-import { useInView } from 'framer-motion'
-import AOS from 'aos'
-import { SearchOutlined } from '@ant-design/icons';
-import styles from '../../css/gameType.module.css';
-import React from 'react';
+import { useAllGameTypesQuery } from "@/redux/api/gameTypeApi";
 import { Button, Input, Select, Space } from 'antd';
+import AOS from 'aos';
+import { useInView } from 'framer-motion';
 import Link from "next/link";
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
+import PropagateLoader from 'react-spinners/PropagateLoader';
+import styles from '../../css/gameType.module.css';
 
 const override: CSSProperties = {
     display: "block",
@@ -60,7 +58,7 @@ const GameTypePage = () => {
             array.push(
 
                 <div className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
-                    <img className="rounded-t-lg" src={item.image} alt="No game types" />
+                    <img className="rounded-t-lg" src={item.url} alt="No game types" />
                     <div className="card-body p-4">
                         <h2 className="card-title">
 
@@ -69,7 +67,7 @@ const GameTypePage = () => {
 
                         <div className="card-actions justify-end">
                             <div className="badge badge-outline">No of Players : {item.numberOfPalyers}</div>
-                            
+
                             <Link
                                 href={{ pathname: 'single', query: { id: item.id, group: 'gameType' } }}
                                 // href={`/single/${item.id}`}

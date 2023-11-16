@@ -25,7 +25,7 @@ const TurfListTable = () => {
         name: '',
         location: '',
         owner: '',
-        image: ''
+        imgurl: ''
     })
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const TurfListTable = () => {
             name: note.name,
             location: note.location,
             owner: note.owner,
-            image: note.image
+            imgurl: note.imgurl
         })
         setEditId(note.id)
     }
@@ -68,7 +68,7 @@ const TurfListTable = () => {
 
     const closeAndCleanForm = () => {
         (document.getElementById("cleanUpdateFormData") as HTMLFormElement).reset();
-        setValues({ name: '', location: '', owner: '', image: '' });
+        setValues({ name: '', location: '', owner: '', imgurl: '' });
     }
 
     const submitHandler = async () => {
@@ -108,7 +108,7 @@ const TurfListTable = () => {
             render: (data: any) => {
                 return (
                     
-                        <Image src={data.image} alt='No turf Image' width={100} height={100} />
+                        <Image src={data.imgurl} alt='No turf Image' width={100} height={100} />
                     
 
                 )

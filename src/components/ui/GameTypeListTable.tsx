@@ -23,7 +23,8 @@ const GameTypeListTable = () => {
 
     const [inputsValue, setValues] = useState({
         name: '',
-        numberOfPalyers: ''
+        numberOfPalyers: '',
+        imgurl:''
     })
 
     useEffect(() => {
@@ -71,7 +72,7 @@ const GameTypeListTable = () => {
 
     const closeAndCleanForm = () => {
         (document.getElementById("cleanUpdateFormData") as HTMLFormElement).reset();
-        setValues({ name: '', numberOfPalyers: '' });
+        setValues({ name: '', numberOfPalyers: '',imgurl:'' });
     }
 
     const submitHandler = async () => {
@@ -117,7 +118,7 @@ const GameTypeListTable = () => {
             render: (data: any) => {
                 return (
                    
-                        <Image src={data.image} alt='No gameType Image' width={100} height={100} />
+                        <Image src={data.imgurl} alt='No gameType Image' width={100} height={100} />
                    
                 )
             }
