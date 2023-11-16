@@ -25,8 +25,8 @@ const TurfListTable = () => {
         name: '',
         location: '',
         owner: '',
-        image:''
-      })
+        image: ''
+    })
 
     useEffect(() => {
         if (!isLoading) {
@@ -46,34 +46,34 @@ const TurfListTable = () => {
         toast.error('Not deleted!')
     }
 
-    const showEditTurf = (mod:any,note:any) => {
+    const showEditTurf = (mod: any, note: any) => {
         (document.getElementById(mod) as HTMLFormElement).showModal();
         setValues({
             ...inputsValue,
-            name:note.name,
-            location:note.location,
-            owner:note.owner,
-            image:note.image
+            name: note.name,
+            location: note.location,
+            owner: note.owner,
+            image: note.image
         })
-       setEditId(note.id)
+        setEditId(note.id)
     }
 
-    const handleChange=(event:any)=>{
+    const handleChange = (event: any) => {
         const { name, value } = event.target
         setValues({
-          ...inputsValue,
-          [name]: value
+            ...inputsValue,
+            [name]: value
         })
     }
 
-    const closeAndCleanForm=()=>{
+    const closeAndCleanForm = () => {
         (document.getElementById("cleanUpdateFormData") as HTMLFormElement).reset();
-        setValues({ name: '', location: '', owner: '',image:'' });
+        setValues({ name: '', location: '', owner: '', image: '' });
     }
 
-    const submitHandler=async()=>{
+    const submitHandler = async () => {
         const id = editId
-        const res = await updateTurf({id,...inputsValue})
+        const res = await updateTurf({ id, ...inputsValue })
         console.log(res)
     }
 
@@ -105,23 +105,21 @@ const TurfListTable = () => {
             title: 'Image',
             // dataIndex: 'image',
             // key: 'image',
-           render:(data:any)=>{
-            return(
-                <div style={{width:"90px", height:'90px'}} >
-                    <Image src={data.image} alt='No Image' width={100} height={100}/>
-                </div>
-                // <div>
-                //     <img src={data.image} alt='No Image' width="90px" height="90px"/>
-                // </div>
-            )
-           }
+            render: (data: any) => {
+                return (
+                    <div style={{ width: "90px", height: '90px' }} >
+                        <Image src={data.image} alt='No turf Image' width={100} height={100} />
+                    </div>
+
+                )
+            }
         },
         {
             title: 'Action',
             render: function (data: any) {
                 return (
                     <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-                        <Button onClick={() => showEditTurf('my_modal_3',data)} type='primary'>update</Button>
+                        <Button onClick={() => showEditTurf('my_modal_3', data)} type='primary'>update</Button>
                         <Button onClick={() => deleteTurfHandler(data.id)} type="primary" danger>delete</Button>
                     </div>
                 )
@@ -140,7 +138,7 @@ const TurfListTable = () => {
         setSortBy(field as string)
         setSortOrder(order === 'ascend' ? 'asc' : 'desc')
     }
-    
+
     const paginationConfig = {
         pageSize: 5,
         total: 6,
