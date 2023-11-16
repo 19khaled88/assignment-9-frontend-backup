@@ -74,7 +74,7 @@ const GameType = () => {
         body: formData
       }).then((response) => response.json()).catch(error => error.json())
 
-      const store = { ...inputsValue, imgurl: fetched.url }
+      const store = { ...inputsValue, imgurl: fetched.public_id }
       const res = await createGameType({ ...store }).unwrap();
 
       if (res.statusCode === 200 && res.success === true) {
