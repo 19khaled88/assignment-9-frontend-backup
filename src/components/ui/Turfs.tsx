@@ -4,12 +4,11 @@ import { Button, Input, Select, Space } from "antd";
 
 import AOS from "aos";
 import { useInView } from "framer-motion";
+import Image from "next/image";
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import styles from "../../css/turf.module.css";
-import Image from "next/image";
 
 
 const override: CSSProperties = {
@@ -81,7 +80,7 @@ const Turfs = () => {
             array.push(
 
                 <div className={`${styles.hoverItem} card w-full bg-base-100 shadow-xl`}>
-                    <figure data-aos="flip-left"><img className="rounded-t-lg" src={item.image} alt="Shoes" /></figure>
+                    <figure data-aos="flip-left"><Image className="rounded-t-lg" src={item.image} width={50} height={50} alt="Shoes" /></figure>
                     <div className="card-body p-4">
                         <h2 className="card-title">
 
