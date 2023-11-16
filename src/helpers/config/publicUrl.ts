@@ -4,4 +4,5 @@ export const getBaseUrl = (): string => {
     // return process.env.BACKEND_PUBLIC_URL || "http://localhost:3039/api/v1"
     // return pub_url || "http://localhost:3039/api/v1"
     return "http://localhost:3039/api/v1"
+    
 }
