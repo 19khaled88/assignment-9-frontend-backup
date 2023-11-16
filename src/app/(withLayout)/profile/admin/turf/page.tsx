@@ -21,7 +21,7 @@ const TurfAdd = () => {
     errorName: ''
   })
 
-  const [image, setImage] = useState<File | string>('');
+  const [imgurl, setImage] = useState<File | string>('');
   const [createObjectURL, setCreateObjectURL] = useState<string>('');
 
   const handleChange = (event: any) => {
@@ -57,7 +57,7 @@ const TurfAdd = () => {
 
     try {
       const formData = new FormData();
-      formData.append('file', image)
+      formData.append('file', imgurl)
       formData.append("upload_preset", "daamw3ao");
 
       const fetched = await fetch('https://api.cloudinary.com/v1_1/be-fresh-ltd/image/upload', {
@@ -66,7 +66,7 @@ const TurfAdd = () => {
       }).then((response) => response.json()).catch(error => error.json())
 
       if (fetched && !fetched.error) {
-        const store = { ...inputsValue, image: fetched.url }
+        const store = { ...inputsValue, imgurl: fetched.url }
         const res = await createTurf({ ...store }).unwrap();
 
       if (res.statusCode === 200 && res.success === true) {
