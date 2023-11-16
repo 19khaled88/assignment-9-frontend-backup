@@ -6,8 +6,7 @@ const nextConfig = {
     reactStrictMode: false,
     images:{
         domains:['res.cloudinary.com'],
-        loader:'cloudinary',
-        path:'https://api.cloudinary.com/v1_1/be-fresh-ltd/image/upload'
+        
     },
    
 }
