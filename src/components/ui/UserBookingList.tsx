@@ -1,15 +1,16 @@
 'use client'
-import { useAllBookingsQuery } from '@/redux/api/bookingApi';
+import { useAllBookingsQuery, useDeleteBookingMutation } from '@/redux/api/bookingApi';
 import { decodedToken } from '@/utils/jwt';
 import { getTokenFromLocalStorage } from '@/utils/localstorage';
 import { Button, Table, TableColumnGroupType } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 type tokenType = {
     token: string
 }
-const BookingList = () => {
+const UserBookingList = () => {
     const query: Record<string, any> = {}
     const [allBooking, setAllBooking] = useState([])
 
@@ -24,42 +25,24 @@ const BookingList = () => {
     query['sortBy'] = sortBy
     query['sortOrder'] = sortOrder
 
-
+    // all bookings
     const { data: bookings, isLoading, isError, isFetching, error, isSuccess, refetch } = useAllBookingsQuery({ ...query })
   
-
-    // console.log(error)
-    // if(error &&error.users.status ===500 ){
-    //     toast(error.users.data.message)
-    // }
-
-    //  console.log(allBooking)
+    //delete booking
+    const [deleteBooking,{isLoading:bookingDeleteLoading}] = useDeleteBookingMutation()
 
 
-
-    // useEffect(() => {
-    //     if (bookings && bookings !== undefined && bookings !== null) {
-    //         let array = bookings?.data[0]
-
-    //         let newObject: Record<string, unknown> = {}
-
-    //         for (let k in array) {
-    //             if (typeof array[k] === 'string') {
-    //                 newObject[k] = array[k]
-    //             } else if (typeof array[k] === 'object') {
-    //                 newObject = { ...newObject, ...array[k] }
-    //             }
-    //         }
-    //         setTest(newObject)
-
-    //     }
-    // },[bookings,isLoading, bookings.data])
-
-    //get token
-
-
-
-
+    const deleteHandler=async(data:any)=>{
+        
+        try {
+            const response =await deleteBooking(data.id).unwrap()
+            if(response.statusCode === 200 && response.success === true){
+                toast.success(response.message)
+            }
+        } catch (error) {
+            toast.error('Something went wrong!!')
+        }
+    }
 
 
     useEffect(() => {
@@ -115,8 +98,8 @@ const BookingList = () => {
             render: function (data: any) {
                 return (
                     <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
-                        <Button onClick={() => console.log(data)} type='primary'>Change</Button>
-                        <Button onClick={() => console.log(data)} type="primary" danger>Cancel</Button>
+                      
+                        <Button onClick={() => deleteHandler(data)} type="primary" danger>Cancel</Button>
                     </div>
                 )
             }
@@ -150,4 +133,4 @@ const BookingList = () => {
     />
 }
 
-export default BookingList
+export default UserBookingList

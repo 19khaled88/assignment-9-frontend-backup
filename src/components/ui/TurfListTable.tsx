@@ -23,7 +23,8 @@ const TurfListTable = () => {
     const [inputsValue, setValues] = useState({
         name: '',
         location: '',
-        owner: ''
+        owner: '',
+        image:''
       })
 
     useEffect(() => {
@@ -50,7 +51,8 @@ const TurfListTable = () => {
             ...inputsValue,
             name:note.name,
             location:note.location,
-            owner:note.owner
+            owner:note.owner,
+            image:note.image
         })
        setEditId(note.id)
     }
@@ -65,7 +67,7 @@ const TurfListTable = () => {
 
     const closeAndCleanForm=()=>{
         (document.getElementById("cleanUpdateFormData") as HTMLFormElement).reset();
-        setValues({ name: '', location: '', owner: '' });
+        setValues({ name: '', location: '', owner: '',image:'' });
     }
 
     const submitHandler=async()=>{
@@ -99,6 +101,18 @@ const TurfListTable = () => {
             key: 'owner'
         },
         {
+            title: 'Image',
+            // dataIndex: 'image',
+            // key: 'image',
+           render:(data:any)=>{
+            return(
+                <div>
+                    <img src={data.image} alt='No Image' width="90px" height="90px"/>
+                </div>
+            )
+           }
+        },
+        {
             title: 'Action',
             render: function (data: any) {
                 return (
@@ -122,6 +136,7 @@ const TurfListTable = () => {
         setSortBy(field as string)
         setSortOrder(order === 'ascend' ? 'asc' : 'desc')
     }
+    
     const paginationConfig = {
         pageSize: 5,
         total: 6,

@@ -1,9 +1,14 @@
+
 import BookingList from '@/components/ui/BookingList'
+import UserBookingList from '@/components/ui/UserBookingList'
 import React from 'react'
 
 const Bookings = () => {
   return (
-    <BookingList />
+    <div>
+      <h1>User - booking list</h1>
+      <UserBookingList />
+    </div>
   )
 }
 

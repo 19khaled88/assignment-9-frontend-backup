@@ -108,7 +108,7 @@ const OfferPage = () => {
         let array: any[] = []
         offers != undefined && offers?.data.map((item: any, index: number) => {
             array.push(
-                <div key={index} className={`${styles.hoverItem} max-w-sm p-6 w-64 h-60 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
+                <div key={index} className={`${styles.hoverItem} max-w-sm p-6 w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
                     <div data-aos="fade-up">
                         <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white text">Turf : {item.turfId
                         }</h5>
@@ -150,7 +150,7 @@ const OfferPage = () => {
         return array
     }
 
-    console.log(offers)
+   
 
     if (isLoading) {
         return (

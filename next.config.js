@@ -4,7 +4,24 @@ const nextConfig = {
     //     disableStaticImages:true
     // }
     reactStrictMode: false,
+    images:{
+        domains:['res.cloudinary.com'],
+    },
    
 }
+
+// module.exports = {
+//     images: {
+//       remotePatterns: [
+//         {
+//           protocol: 'https',
+//           hostname: 'res.cloudinary.com',
+//           // You can add these as well
+//           // port: '',
+//           // pathname: 'arifscloud/image/upload/**',
+//         },
+//       ],
+//     },
+//   }
 
 module.exports = nextConfig

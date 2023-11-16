@@ -9,10 +9,14 @@ const GameType = () => {
   const query: Record<string, any> = {}
 
   const [hideForm, setHideForm] = useState(false)
+  const [image, setImage] = useState<File | string>('');
+  const [createObjectURL, setCreateObjectURL] = useState<string>('');
+
 
   const [inputsValue, setValues] = useState({
     name: '',
-    numberOfPalyers: ''
+    numberOfPalyers: '',
+    image:''
   })
 
   const [emptyError, setEmptyError] = useState<Record<string, unknown>>({
@@ -38,6 +42,16 @@ const GameType = () => {
     (document.getElementById(mod) as HTMLFormElement).showModal()
   }
 
+  const uploadToClient = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+
+      setImage(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
+
   const submitHandler = async () => {
     if (inputsValue['name'] === "") {
       setEmptyError({ "errorName": 'name' })
@@ -50,7 +64,18 @@ const GameType = () => {
    
 
     try {
-      const res = await createGameType({ ...inputsValue }).unwrap();
+
+      const formData = new FormData();
+      formData.append('file', image)
+      formData.append("upload_preset", "daamw3ao");
+
+      const fetched = await fetch('https://api.cloudinary.com/v1_1/be-fresh-ltd/image/upload', {
+        method: 'POST',
+        body: formData
+      }).then((response) => response.json()).catch(error => error.json())
+
+      const store = { ...inputsValue, image: fetched.url }
+      const res = await createGameType({ ...store }).unwrap();
 
       if (res.statusCode === 200 && res.success === true) {
         (document.getElementById("cleanFormData") as HTMLFormElement).reset();
@@ -65,7 +90,7 @@ const GameType = () => {
 
   const closeAndCleanForm = () => {
     (document.getElementById("cleanFormData") as HTMLFormElement).reset();
-    setValues({ name: '', numberOfPalyers: '' });
+    setValues({ name: '', numberOfPalyers: '',image:'' });
   }
 
   return (
@@ -83,6 +108,10 @@ const GameType = () => {
           <div>
             <label htmlFor="small-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of players</label>
             <input type="number" onChange={handleChange} value={inputsValue['numberOfPalyers']} id="small-input" name="numberOfPalyers" className={` ${emptyError.errorName === 'numberOfPalyers' ? 'border border-red-400' : 'border border-gray-400'} block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} />
+          </div>
+          <div>
+            <label>Upload Image</label>
+            <input type="file" name="myImage" onChange={uploadToClient} />
           </div>
 
           <div className="flex flex-row justify-between">
