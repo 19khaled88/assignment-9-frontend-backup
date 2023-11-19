@@ -70,7 +70,7 @@ const Turfs = () => {
         refetch,
         isFetching
     } = useAllTurfsQuery({ ...query });
-    console.log(turfs)
+    
 
     const showTurfs = (turfs: any): ReactNode => {
         let array: any[] = [];
@@ -218,7 +218,7 @@ const Turfs = () => {
                     <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
                         <Select
                             className="text-lg"
-                            style={{ height: "40px" }}
+                            style={{ height: "40px",  }}
                             defaultValue="name"
                             options={allOptions}
                             onChange={(value: string) => setSearchTitle(value)}

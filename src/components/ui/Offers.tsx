@@ -60,8 +60,7 @@ const OfferPage = () => {
     const [createBooking, { error: bookingError, isLoading: bookingLoading }] = useCreateBookingMutation();
     // const format = 'yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\''
 
-    console.log(offers)
-    
+
     const showBookingHandler = (item: any, mod: any) => {
         const token = getTokenFromLocalStorage('validateToken')
         const userInfo = token != null && decodedToken(token)
@@ -91,7 +90,7 @@ const OfferPage = () => {
             "fieldId": bookingData?.fieldId,
             "gameTypeId": bookingData?.gameTypeId
         }
-        
+
 
         try {
             const res = await createBooking({ ...store }).unwrap();
@@ -112,10 +111,10 @@ const OfferPage = () => {
             array.push(
                 <div key={index} className={`${styles.hoverItem} max-w-sm p-6 w-full h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700`}>
                     <div data-aos="fade-up">
-                        <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white text">Turf : {item.turfId
-                        }</h5>
-                        <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Location : Fields : {item.fieldId}</p>
-                        <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Game : {item.gameTypeId}</p>
+                        <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white text">Turf : {item.turf.name}</h5>
+                        <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Location : {item.turf.location}</p>
+                        <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Fields : {item.field.code}</p>
+                        <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Game : {item.gameType.name}</p>
                         <p className="mb-1 text-sm font-normal text-gray-700 dark:text-gray-400">Pay per hour : {item.price_per_hour} {'\u09f3'}</p>
                         <button
                             className="btn inline-flex items-center px-3 py-2 text-sm font-medium text-center 
@@ -152,7 +151,7 @@ const OfferPage = () => {
         return array
     }
 
-   
+
 
     if (isLoading) {
         return (
