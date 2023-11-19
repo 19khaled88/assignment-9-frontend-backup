@@ -39,6 +39,7 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
+      console.log(res)
 
       if (!res || res === undefined) {
         router.push("/login");
