@@ -60,6 +60,8 @@ const OfferPage = () => {
     const [createBooking, { error: bookingError, isLoading: bookingLoading }] = useCreateBookingMutation();
     // const format = 'yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\''
 
+    console.log(offers)
+    
     const showBookingHandler = (item: any, mod: any) => {
         const token = getTokenFromLocalStorage('validateToken')
         const userInfo = token != null && decodedToken(token)
