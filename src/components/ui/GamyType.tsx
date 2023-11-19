@@ -241,7 +241,7 @@ const GameTypePage = () => {
             <h1 className="text-center py-5 text-2xl font-bold text-gray-500" data-aos="zoom-in">Game, What you can play in our turfs</h1>
             <Space className="my-6">
                 <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
-                    <Select className="text-lg" onChange={(value: string) => setSearchTitle(value)} style={{ height: '40px' }} defaultValue="name" options={options} />
+                    <Select className="text-lg" onChange={(value: string) => setSearchTitle(value)} style={{ height: '40px',width:'200px' }} defaultValue="name" options={options} />
                     <Input onChange={(e) => setSearchData(e.target.value)} defaultValue="Search for game type" style={{ height: '40px', width: '100%' }} />
                     <Button onClick={handleTurfClick} className="bg-blue-500 text-white text-lg" style={{ height: '40px' }}>Submit</Button>
                 </Space.Compact>

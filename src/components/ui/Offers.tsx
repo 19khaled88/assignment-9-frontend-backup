@@ -155,7 +155,7 @@ const OfferPage = () => {
 
     if (isLoading) {
         return (
-            <div className="flex flex-col pt-10 justify-items-center justify-center ">
+            <div  className="flex flex-col pt-10 justify-items-center justify-center ">
                 <h1 className="text-center py-5 text-2xl font-bold text-gray-500">Book you slot here</h1>
                 <div role="status" className="max-w-sm animate-pulse ">
                     <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
@@ -185,11 +185,11 @@ const OfferPage = () => {
         )
     }
     return (
-        <div className="flex flex-col pt-10 justify-items-center justify-center relative">
+        <div style={{background:'#E1E8FF'}} className="flex flex-col pt-10 pb-5 justify-items-center justify-center relative">
             <h1 ref={ref} data-aos="zoom-in" className="text-center py-5 text-2xl font-bold text-gray-500" >Book you slot here</h1>
             <Space className="my-6">
                 <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
-                    <Select className="text-lg" style={{ height: '40px' }} defaultValue="All criteria" options={options} />
+                    <Select className="text-lg" style={{ height: '40px',width:'200px' }} defaultValue="All criteria" options={options} />
                     <Input defaultValue="Search for available slot" style={{ height: '40px', width: '100%' }} />
                     <Button className="bg-blue-500 text-white text-lg" style={{ height: '40px' }}>Submit</Button>
                 </Space.Compact>

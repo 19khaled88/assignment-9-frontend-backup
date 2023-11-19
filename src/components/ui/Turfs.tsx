@@ -293,7 +293,7 @@ const Turfs = () => {
         )
     }
     return (
-        <div className="flex flex-col pt-10 justify-items-center justify-center relative">
+        <div className="bg-teal-100 flex flex-col pt-10 pb-5 justify-items-center justify-center relative">
             <h1
                 className="text-center py-5 text-2xl font-bold text-gray-500"
                 data-aos="zoom-in"
@@ -304,7 +304,7 @@ const Turfs = () => {
                 <Space.Compact className="absolute inset-x-0 w-3/4 md:w-2/3  lg:w-1/2 mx-auto xl:w-1/3 xl:mr-10 top-24">
                     <Select
                         className="text-lg"
-                        style={{ height: "40px" }}
+                        style={{ height: "40px",width:'200px' }}
                         defaultValue="name"
                         options={allOptions}
                         onChange={(value: string) => setSearchTitle(value)}
