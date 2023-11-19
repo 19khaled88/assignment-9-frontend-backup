@@ -122,7 +122,7 @@ export const sidebarItems = (role: any) => {
                 },
                 {
                     icon: < UserOutlined />,
-                    label: <Link href={`/profile/list`}>User List</Link>,
+                    label: <Link href={`/profile/super_admin/users`}>User List</Link>,
                     key: `/list`
                 },
                 // {
@@ -146,8 +146,11 @@ export const sidebarItems = (role: any) => {
         //     ]
         // }
     ]
-    if (role && role.role === 'SUPER_ADMIN') return superAdminSidebarItem;
+    if (role && role.role === 'USER') return superAdminSidebarItem;
     else if (role && role.role === 'ADMIN') return commonAdminSidebarItem;
     else return defaultSidebarItems;
+    // if (role && role.role === 'SUPER_ADMIN') return superAdminSidebarItem;
+    // else if (role && role.role === 'ADMIN') return commonAdminSidebarItem;
+    // else return defaultSidebarItems;
 
 }

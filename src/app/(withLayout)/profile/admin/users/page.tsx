@@ -1,9 +1,13 @@
-import UserListTable from "@/components/ui/UserList"
+import AdminUserListTable from "@/components/ui/AdminUserList"
+
 
 
 const UserList = () => {
     return (
-        <div><UserListTable  /></div>
+        <div>
+            <p>Admin panel</p>
+            <AdminUserListTable />
+        </div>
     )
 }
 

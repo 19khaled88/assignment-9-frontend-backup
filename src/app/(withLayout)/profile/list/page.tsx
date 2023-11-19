@@ -1,4 +1,4 @@
-import ListTable from '@/components/ui/UserList'
+import ListTable from '@/components/ui/AdminUserList'
 
 const page = () => {
   return (

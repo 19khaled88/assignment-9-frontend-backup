@@ -1,8 +1,9 @@
 'use client'
-import { useAllUserQuery } from '@/redux/api/authApi'
-import { Button, Table } from 'antd'
+import { useAllUserQuery, useUserUpdateMutation } from '@/redux/api/authApi'
+import { Button, Select, Table } from 'antd'
 import { useEffect, useState } from 'react'
-const UserListTable = () => {
+import { toast } from 'react-toastify'
+const SuperAdminUserListTable = () => {
     const query: Record<string, any> = {}
     const [allUser, setAllUser] = useState([])
     const [size, setSize] = useState<number>(10)
@@ -14,14 +15,39 @@ const UserListTable = () => {
     query['sortBy'] = sortBy
     query['sortOrder'] = sortOrder
 
-    const { data: users, isLoading } = useAllUserQuery({ ...query })
 
+    //all user
+    const { data: users, isLoading } = useAllUserQuery({ ...query })
+ 
+    // user update
+    const [userUpdate,{isLoading:userUpdateLoading,error,isSuccess}] = useUserUpdateMutation()
+    
     useEffect(() => {
         if (!isLoading) {
             setAllUser(users?.data.data)
         }
     }, [isLoading, users?.data.data])
 
+
+    const changeHandler = async (value: any) => {
+
+        try {
+            const res = value.split(',')
+
+            const id = res[1]
+            const info = { role: res[0] }
+           
+            const response = await userUpdate({ id, ...info }).unwrap()
+            if (response.statusCode === 200 && response.success === true) {
+                toast.success(response.message)
+            }
+            
+        } catch (error) {
+            toast.error('Something went wrong')
+            console.log(error)
+        }
+
+    }
 
     const columns = [
         {
@@ -45,9 +71,32 @@ const UserListTable = () => {
             key: 'contactNo'
         },
         {
-            title: 'Role',
+            title: 'Roles',
             dataIndex: 'role',
             key: 'role'
+        },
+        {
+            title: 'Role',
+            render: function (data: any) {
+                return (
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
+                        {
+                            data.role === 'SUPER_ADMIN' ?
+                                <Select defaultValue={data.role} disabled>
+                                    <Select.Option value={"USER," + data.id}>USER</Select.Option>
+                                    <Select.Option value={"ADMIN," + data.id}>ADMIN</Select.Option>
+                                    <Select.Option value={"SUPER_ADMIN," + data.id}>SUPER_ADMIN</Select.Option>
+                                </Select> :
+                                <Select defaultValue={data.role} onChange={changeHandler}>
+                                    <Select.Option value={"USER," + data.id}>USER</Select.Option>
+                                    <Select.Option value={"ADMIN," + data.id}>ADMIN</Select.Option>
+                                    <Select.Option value={"SUPER_ADMIN," + data.id}>SUPER_ADMIN</Select.Option>
+                                </Select>
+                        }
+
+                    </div>
+                )
+            }
         },
         {
             title: 'Action',
@@ -62,18 +111,6 @@ const UserListTable = () => {
         }
     ]
 
-    const tableData = [
-        {
-            key: '1',
-            name: 'khaled',
-            age: '30'
-        },
-        {
-            key: '2',
-            name: 'khaled',
-            age: '30'
-        }
-    ]
     const onPageSizeChange = (page: number, pageSise: number) => {
         console.log(page, pageSise)
         setPage(page)
@@ -101,4 +138,4 @@ const UserListTable = () => {
     />
 }
 
-export default UserListTable
+export default SuperAdminUserListTable
