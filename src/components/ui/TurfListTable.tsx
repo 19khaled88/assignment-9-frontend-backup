@@ -28,6 +28,8 @@ const TurfListTable = () => {
         imgurl: ''
     })
 
+    
+
     useEffect(() => {
         if (!isLoading) {
             setAllTurf(turfs?.data.data)
@@ -107,9 +109,9 @@ const TurfListTable = () => {
             // key: 'image',
             render: (data: any) => {
                 return (
-                    
-                        <Image src={data.imgurl} alt='No turf Image' width={100} height={100} />
-                    
+
+                    <Image src={data.imgurl} alt='No turf Image' width={100} height={100} />
+
 
                 )
             }
